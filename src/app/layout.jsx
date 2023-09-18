@@ -1,3 +1,10 @@
+import { Hanken_Grotesk } from 'next/font/google';
+
+const hankenGrotesk = Hanken_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 export const metadata = {
   title: "TestMe",
   description: "Test application",
@@ -6,7 +13,7 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={hankenGrotesk.className}>{children}</body>
     </html>
   );
 };
