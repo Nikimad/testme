@@ -1,19 +1,20 @@
 @use "@/styles/variables.scss" as *;
 
 .button {
-    color: $white;
-    background-color: $accent-rest;
-    border: 1px solid $border-color-sec;
-    border-radius: $br;
+    color: $clr-netural-100;
+    background-color: $clr-accent-400;
+    border: none;
+    border-radius: 100vmax;
     cursor: pointer;
+    transition: $transition-hover;
     padding: 5px 16px;
 
     &:hover,
-    &:focus {
-        background-color: $accent-hover;
+    &:focus-visible {
+        background-color: $clr-accent-500;
     }
 
     &:active {
-        background-color: $accent-active;
+        background-color: $clr-accent-600;
     }
 }
