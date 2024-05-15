@@ -1,7 +1,5 @@
+import Link from "next/link";
 
-import cn from "classnames";
-import s from "./Button.module.scss";
-
-const Button = ({ className, ...props }) => <button className={cn(s.button)} { ...props } />;
+const Button = (props) => (props.href ? <Link {...props} /> : <button {...props} />);
 
 export default Button;
