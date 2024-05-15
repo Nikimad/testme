@@ -1,0 +1,8 @@
+@use "@/styles/variables.scss" as *;
+
+.container {
+    background-color: $background-color-sec;
+    border: 1px solid $border-color-prime;
+    border-radius: $br;
+    padding: 1rem;
+}
