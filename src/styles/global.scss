@@ -1,0 +1,16 @@
+@use "./variables.scss" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.body {
+  font-size: 14px;
+  line-height: $lh-prime;
+  color: $font-color;
+  height: 100vh;
+  height: 100svh;
+  margin: 0;
+}
