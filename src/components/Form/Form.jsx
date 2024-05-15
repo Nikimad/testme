@@ -1,12 +1,11 @@
-import cn from "classnames";
 import { Form as FormikForm } from "formik";
-import s from "./Form.module.scss";
+import StyledContainer from "../StyledContainer";
 
 const Form = ({ title, className, children }) => (
-  <div className={cn(s.form__wrapper, { [className]: Boolean(className) })}>
+  <StyledContainer>
     <h2>{title}</h2>
-    <FormikForm className={s.form}>{children}</FormikForm>
-  </div>
+    <FormikForm className={className}>{children}</FormikForm>
+  </StyledContainer>
 );
 
 export default Form;
