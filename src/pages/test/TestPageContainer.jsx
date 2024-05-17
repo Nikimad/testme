@@ -1,3 +1,5 @@
+"use client";
+
 import TestPage from "./TestPage";
 
 const TestPageContainer = ({ params: { testId } }) => {

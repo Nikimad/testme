@@ -1,0 +1,30 @@
+@use "@/styles/variables.scss" as *;
+
+.navigator {
+    @media screen and (min-width: $max-width) {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__items {
+        position: relative;
+        display: flex;
+        gap: 1rem;
+        scroll-behavior: smooth;
+        overflow: auto hidden;
+        scroll-padding-inline: 25% 50%;
+        scrollbar-width: none;
+        padding-inline: 0.5rem;
+        
+
+        @media screen and (min-width: 765px) {
+            padding-inline: 1rem;
+        }
+    }
+
+    &__item {
+        &::marker {
+            content: "";
+        }
+    }
+}

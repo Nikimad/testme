@@ -13,16 +13,18 @@ const ButtonContainer = ({
   const router = useRouter();
 
   const handleClick = (e) => {
-    onClick(e);
-    if (href) {
+    if (onClick) onClick(e);
+    if (href !== undefined) {
       e.preventDefault();
-      router[linkAction](href);
+      router[linkAction](typeof href === "string" ? href : String(href));
     }
   };
 
   return (
     <Button
-      href={href}
+      href={
+        href === undefined || typeof href === "string" ? href : String(href)
+      }
       onClick={handleClick}
       className={cn(s.button, { [className]: Boolean(className) })}
       {...props}
