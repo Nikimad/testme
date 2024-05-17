@@ -1,0 +1,36 @@
+@use "@/styles/variables.scss" as *;
+
+.link {
+  display: grid;
+  place-content: center;
+  border: 1px solid $clr-netural-300;
+  border-radius: 100%;
+  height: 2em;
+  width: 2em;
+  font-weight: bold;
+  text-decoration: none;
+  transition: $transition-hover;
+
+  &_active {
+    background-color: $clr-accent-400;
+    color: $clr-accent-100;
+  }
+
+  &_active:hover & {
+    color: inherit;
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+
+  @media (hover: hover) {
+    &:not([class*="_active"]) {
+      &:hover,
+      &:focus {
+        background-color: $clr-netural-200;
+      }
+    }
+  }
+}
