@@ -1,0 +1,13 @@
+@use "@/styles/variables.scss" as *;
+
+.container {
+    width: min($max-width, 100% - 0.5rem * 2);
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 765px) {
+    .container {
+        width: min($max-width, 100% - 1rem * 2);
+    }
+}
