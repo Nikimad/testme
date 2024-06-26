@@ -1,0 +1,19 @@
+@use "@/styles/variables.scss" as *;
+
+.link {
+    color: inherit;
+    text-decoration: none;
+    font-size: .9375rem;
+    font-weight: 500;
+    transition: $transition-hover;
+    padding: 5px 16px;
+
+    &:hover,
+    &:focus-visible {
+        color: $clr-accent-400;
+    }
+
+    &:active {
+        color: $clr-accent-500;
+    }
+}
