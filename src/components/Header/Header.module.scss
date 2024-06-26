@@ -1,0 +1,38 @@
+@use "@/styles/variables.scss" as *;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__heading {
+        margin: 0;
+    }
+
+    &__content {
+        &_loading {
+            border: 1px solid $clr-netural-300;
+            border-radius: $br;
+            background-color: $clr-netural-300;
+            overflow: hidden;
+            animation: appear 1s linear infinite;
+        }
+    }
+
+    &__controls {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__content_loading &__controls {
+        filter: blur(10px);
+    }
+}
+
+@keyframes appear {
+    25% {
+        opacity: 0.5;
+    } 75% {
+        opacity: 0.2;
+    }
+}

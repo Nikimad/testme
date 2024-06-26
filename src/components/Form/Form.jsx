@@ -1,11 +1,11 @@
 import { Form as FormikForm } from "formik";
-import StyledContainer from "../StyledContainer";
+import s from "./Form.module.scss";
 
-const Form = ({ title, className, children }) => (
-  <StyledContainer>
-    <h2>{title}</h2>
-    <FormikForm className={className}>{children}</FormikForm>
-  </StyledContainer>
+const Form = ({ title, className, children, ...props }) => (
+  <>
+    <h2 className={s.form__title}>{title}</h2>
+    <FormikForm className={className} {...props}>{children}</FormikForm>
+  </>
 );
 
 export default Form;
