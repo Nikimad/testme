@@ -1,0 +1,32 @@
+@use "@/styles/variables.scss" as *;
+
+.body {
+    font-size: 14px;
+    line-height: $lh-prime;
+    color: $clr-prim-400;
+    height: 100vh;
+    height: 100svh;
+    margin: 0;
+
+    &::before, &::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: 30%;
+        z-index: -1;
+    }
+
+    &::before {
+        background-image: url("/bg-tablet-pattern.svg"), url("/bg-tablet-pattern.svg");
+        background-position: top 70% left -25%, top -70% right 10%;
+    }
+
+    &::after {
+        background-image: url("/bg-tablet-pattern.svg");
+        background-position: bottom 110% right -25%;
+        transform: scale(1, -1);
+    }
+}

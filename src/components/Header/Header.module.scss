@@ -1,17 +1,26 @@
 @use "@/styles/variables.scss" as *;
 
 .header {
+    inset: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
+    &__logobox {
+        display: flex;
+        align-items: flex-end;
+    }
+
     &__heading {
+        line-height: 1;
         margin: 0;
     }
 
     &__content {
+        height: 3em;
+
         &_loading {
-            border: 1px solid $clr-netural-300;
+            box-shadow: 0 0 1px $clr-netural-300;
             border-radius: $br;
             background-color: $clr-netural-300;
             overflow: hidden;
