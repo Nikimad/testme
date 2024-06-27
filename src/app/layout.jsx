@@ -2,6 +2,7 @@ import "@/styles/global.scss";
 import cn from "classnames";
 import { Hanken_Grotesk } from "next/font/google";
 import ReduxProvider from "@/components/ReduxProvider";
+import Body from "@/components/Body";
 
 const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
@@ -16,7 +17,7 @@ export const metadata = {
 const RootLayout = ({ children }) => (
   <html lang="en">
     <ReduxProvider>
-        <body className={cn(hankenGrotesk.className, "body")}>{children}</body>
+        <Body className={hankenGrotesk.className}>{children}</Body>
     </ReduxProvider>
   </html>
 );
