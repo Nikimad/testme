@@ -1,11 +1,12 @@
 "use client";
 
 import useAuth from "@/hooks/useAuth";
+import Greet from "@/components/Greet";
 
 const HomePage = () => {
   useAuth();
 
-  return null;
+  return <Greet />;
 };
 
 export default HomePage;
