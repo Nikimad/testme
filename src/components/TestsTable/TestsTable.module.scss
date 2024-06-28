@@ -1,0 +1,107 @@
+@use "@/styles/variables.scss" as *;
+
+.table {
+    display: grid;
+    padding: 0;
+    margin: 0;
+
+    &__container {
+        display: grid;
+        grid-template-rows: 50px 1fr;
+        background-color: $clr-netural-100;
+        border: 1px solid $clr-netural-200;
+        border-radius: $br;
+        min-height: calc(max(var(--length) * 21px , 105px) + 50px);
+        
+
+        &__plug {
+            display: grid;
+            place-content: center;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+    }
+
+    &__controls {
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        border-bottom: 1px solid $clr-netural-200;
+
+        &__search {
+        
+            &__input {
+                font: inherit;
+                color: inherit;
+                border: none;
+                background-color: transparent;
+                height: 100%;
+                width: 100%;
+
+                &::placeholder {
+                    font: inherit;
+                    color: inherit;
+                    opacity: .7;
+                }
+            }
+
+            &__button {
+                order: -1;
+                background-color: transparent;
+                border: none;
+                font-size: 1.5em;
+                height: 100%;
+                cursor: pointer;
+                transition: $transition-hover;
+                opacity: .7;
+                padding-left: calc(1rem + 20px);
+
+                &:hover,
+                &:focus-visible {
+                    opacity: 1;
+                    background-color: $clr-netural-200;
+                }
+    
+                &:active {
+                    background-color: $clr-netural-300;
+                }
+            }
+        }
+
+        &__sort {
+            text-align: left;
+            width: 16.5ch;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            transition: $transition-hover;
+            opacity: .7;
+            padding: 1rem 0 1rem 1ch;
+
+            &:hover,
+            &:focus-visible {
+                opacity: 1;
+                background-color: $clr-netural-200;
+            }
+
+            &:active {
+                background-color: $clr-netural-300;
+            }
+        }
+    }
+
+    &__item {
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        align-items: center;
+        border-bottom: 1px solid $clr-netural-200;;
+        padding: 1rem;
+
+        &::marker {
+            content: "";
+        }
+
+        &__date {
+            opacity: .7;
+        }
+    }
+}
