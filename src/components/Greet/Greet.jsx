@@ -4,7 +4,7 @@ import Button from "../Button";
 import s from "./Greet.module.scss";
 
 const Greet = () => (
-  <LayoutContainer element="main" className={s.container}>
+  <LayoutContainer element="section" className={s.container}>
     <div className={s.container__content}>
       <h2 className={s.container__title}>Discover the Joy of Learning</h2>
       <p className={s.container__text}>
