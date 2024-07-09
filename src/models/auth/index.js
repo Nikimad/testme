@@ -6,7 +6,7 @@ const authSlice = createSlice({
     username: "guest",
     id: null,
     is_admin: false,
-    is_loading: false,
+    is_loading: true,
     error: null,
   },
   reducers: {
