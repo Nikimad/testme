@@ -11,3 +11,16 @@
     white-space: nowrap;
     width: 1px;
 }
+
+.loading {
+    animation: appear 1s linear infinite;
+}
+
+@keyframes appear {
+    25% {
+        opacity: 0.5;
+    }
+    75% {
+        opacity: 0.2;
+    }
+}

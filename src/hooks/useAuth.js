@@ -11,6 +11,8 @@ const useAuth = () => {
     useEffect(() => {
         if (!isUserAuthorized) getUser();
     }, []);
+
+    return isUserAuthorized;
 };
 
 export default useAuth;

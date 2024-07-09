@@ -1,3 +1,5 @@
+"use client";
+
 import cn from "classnames";
 import NextLink from "next/link";
 import s from "./Link.module.scss";

@@ -1,12 +1,12 @@
 @use "@/styles/variables.scss" as *;
 
 .header {
-    inset: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     &__logobox {
+        position: relative;
         display: flex;
         align-items: flex-end;
     }
@@ -16,32 +16,14 @@
         margin: 0;
     }
 
-    &__content {
-        height: 3em;
-
-        &_loading {
-            box-shadow: 0 0 1px $clr-netural-300;
-            border-radius: $br;
-            background-color: $clr-netural-300;
-            overflow: hidden;
-            animation: appear 1s linear infinite;
-        }
+    &__homelink {
+        position: absolute;
+        height: 100%;
+        width: 100%;
     }
 
     &__controls {
         display: flex;
         justify-content: flex-end;
-    }
-
-    &__content_loading &__controls {
-        filter: blur(10px);
-    }
-}
-
-@keyframes appear {
-    25% {
-        opacity: 0.5;
-    } 75% {
-        opacity: 0.2;
     }
 }

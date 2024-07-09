@@ -3,14 +3,8 @@
 .button {
     color: $clr-netural-100;
     text-decoration: none;
-    font-size: .9375rem;
-    font-weight: 500;
-    font-family: inherit;
     background-color: $clr-accent-400;
-    border: none;
     border-radius: 100vmax;
-    cursor: pointer;
-    transition: $transition-hover;
     padding: 10px 20px;
 
     &:hover,

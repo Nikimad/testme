@@ -1,5 +1,5 @@
-import cn from "classnames";
 import LayoutContainer from "../LayoutContainer";
+import Placeholder from "../Placeholder";
 import Link from "@/components/Link";
 import Button from "../Button";
 import Image from "next/image";
@@ -10,12 +10,9 @@ const Header = ({ isLoading, isUserAuthorized, onLogout }) => (
     <div className={s.header__logobox}>
       <Image src="/logo.svg" width={28} height={28} alt="logo" aria-hidden={true} />
       <h1 className={s.header__heading}>TestMe</h1>
+      <Link href="/" className={s.header__homelink}><span className="visually-hidden">Home</span></Link>
     </div>
-    <div
-      className={cn(s.header__content, {
-        [s.header__content_loading]: isLoading,
-      })}
-    >
+    <Placeholder isLoading={isLoading}>
       <div className={s.header__controls}>
         {!isUserAuthorized ? (
           <>
@@ -30,7 +27,7 @@ const Header = ({ isLoading, isUserAuthorized, onLogout }) => (
           <Button onClick={onLogout}>Log out</Button>
         )}
       </div>
-    </div>
+    </Placeholder>
   </LayoutContainer>
 );
 
