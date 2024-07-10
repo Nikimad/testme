@@ -17,7 +17,10 @@ export const metadata = {
 const RootLayout = ({ children }) => (
   <html lang="en">
     <ReduxProvider>
-        <Body className={hankenGrotesk.className}>{children}</Body>
+      <Body className={hankenGrotesk.className}>
+        {children}
+        <div id="modal-root"></div>
+      </Body>
     </ReduxProvider>
   </html>
 );
