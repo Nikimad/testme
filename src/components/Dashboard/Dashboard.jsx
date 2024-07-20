@@ -16,8 +16,8 @@ const Dashboard = ({ onStart, isLoading }) => (
           ever-changing world, education plays a crucial role in shaping the
           future.
         </p>
-        <Button className={s.container__button} onClick={onStart}>
-          Geting start
+        <Button styleType="pill" className={s.container__button} onClick={onStart}>
+          Getting start
         </Button>
       </div>
       <Image
