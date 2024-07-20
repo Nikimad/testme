@@ -1,21 +1,10 @@
-import { useCallback, useState } from "react";
-import useScrollLock from "./useScrollLock";
+import { useContext } from "react";
+import { ModalContext } from "@/components/ModalProvider/ModalProvider";
 
-const useModal = (openerRef) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const { lockScroll, unlockScroll } = useScrollLock();
+const useModal = (openerRef) => {;
+  const modalProps = useContext(ModalContext);
 
-  const openModal = useCallback(() => {
-    lockScroll();
-    setIsModalOpen(true);
-  }, [lockScroll]);
-  const closeModal = useCallback(() => {
-    unlockScroll();
-    setIsModalOpen(false);
-    openerRef?.current.focus();
-  }, [unlockScroll]);
-
-  return { isModalOpen, openModal, closeModal };
+  return modalProps;
 };
 
 export default useModal;
