@@ -30,6 +30,10 @@ const TestsPage = () => {
     getTests(searchParams.toString().toLowerCase());
   }, [searchParams]);
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   return (
     <>
       <Formik
