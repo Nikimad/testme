@@ -24,7 +24,7 @@ const Header = ({ isLoading, isUserAuthorized, onLogout }) => (
             </Link>
           </>
         ) : (
-          <Button onClick={onLogout}>Log out</Button>
+          <Button styleType="pill" onClick={onLogout}>Log out</Button>
         )}
       </div>
     </Placeholder>

@@ -3,6 +3,7 @@ import cn from "classnames";
 import { Hanken_Grotesk } from "next/font/google";
 import ReduxProvider from "@/components/ReduxProvider";
 import Body from "@/components/Body";
+import ModalProvider from "@/components/ModalProvider";
 
 const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
@@ -18,7 +19,7 @@ const RootLayout = ({ children }) => (
   <html lang="en">
     <ReduxProvider>
       <Body className={hankenGrotesk.className}>
-        {children}
+        <ModalProvider>{children}</ModalProvider>
         <div id="modal-root"></div>
       </Body>
     </ReduxProvider>

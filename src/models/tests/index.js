@@ -15,10 +15,20 @@ const testsSlice = createSlice({
       state.is_loading = true;
       return state;
     },
+    getTest: (state) => {
+      state.is_loading = true;
+      return state;
+    },
     fetchSuccess: (state, { payload }) => {
       state.is_loading = false;
-      state.tests = payload.tests;
-      state.meta = payload.meta;
+      if (payload.meta) {
+        state.tests = payload.tests;
+        state.meta = payload.meta;
+      }
+      if (!payload.meta) {
+        state.tests = [...state.tests, payload];
+      }
+      return state;
     },
     fetchReject: (state, { payload }) => {
       state.is_loading = false;

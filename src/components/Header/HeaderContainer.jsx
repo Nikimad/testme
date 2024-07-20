@@ -12,7 +12,10 @@ const HeaderContainer = () => {
   const isAuthLoading = useSelector(authSelectors.selectIsLoading);
   const isUserAuthorized = useSelector(authSelectors.selectIsUserAuthorized);
   const logout = useAction(authActions.logout);
-  const handleLogout = () => logout();
+  const handleLogout = () => {
+    localStorage.clear();
+    logout();
+  };
 
   useLayoutEffect(() => {
     setIsLoading(isAuthLoading);

@@ -9,7 +9,7 @@ const Tests = ({ tests }) => (
       <ul className={s.tests__list}>
         {tests.map((test) => (
           <li key={test.id} className={s.tests__list__item}>
-            <TestLink href={String(test.id)} className={s.tests__list__link}>{test.title}</TestLink>
+            <TestLink test={test} href={`test/${test.id}`} className={s.tests__list__link}>{test.title}</TestLink>
             <span>{new Date(test.created_at).toDateString()}</span>
           </li>
         ))}

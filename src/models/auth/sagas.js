@@ -11,7 +11,6 @@ const gu = () => get("users/current");
 function* signup({ payload }) {
   try {
     const user = yield call(sup, { ...payload, is_admin: true });
-    yield console.log(user);
   } catch (e) {
     yield put(authActions.fetchReject(e));
     yield delay();

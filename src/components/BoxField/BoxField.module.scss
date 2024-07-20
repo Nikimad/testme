@@ -1,0 +1,54 @@
+@use "@/styles/variables.scss" as *;
+
+.box {
+    position: relative;
+    display: inline-block;
+    min-width: 1em;
+    min-height: 1em;
+    background-color: #fff;
+    box-shadow: 0 0 0 1px $clr-netural-300;
+    cursor: pointer;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+}
+
+.input {
+    &[type="radio"] + .box {
+        border-radius: 50%;
+    }
+    
+    &[type="checkbox"] + .box {
+        border-radius: 2px;
+    }
+
+    &:checked {
+        & + .box {
+            background-color: $clr-accent-400;
+        }
+
+        &[type="checkbox"] + .box::before {
+            display: inline-block;
+            height: 50%;
+            width: 30%;
+            border-bottom: 2px solid #fff;
+            border-right: 2px solid #fff;
+        }
+    
+        &[type="radio"] + .box::before {
+            border-radius: 50%;
+            height: 80%;
+            width: 80%;
+            border: 1px solid #fff;
+        }
+    }
+
+    &:focus-visible + .box {
+        outline: auto;
+    }
+}
