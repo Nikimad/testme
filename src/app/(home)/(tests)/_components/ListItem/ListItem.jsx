@@ -1,5 +1,6 @@
 import Link from "@/components/Link";
 import Modal from "@/components/Modal";
+import Button from "@/components/Button";
 import s from "./ListItem.module.scss";
 
 const ListItem = ({
@@ -16,6 +17,7 @@ const ListItem = ({
       test={test}
       href={`test/${test.id}`}
       className={s.listitem__link}
+      onClick={onClick}
       {...props}
     >
       {test.title}
