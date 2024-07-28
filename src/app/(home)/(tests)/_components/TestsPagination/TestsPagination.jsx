@@ -1,5 +1,5 @@
 import cn from "classnames";
-import TestsLink from "../TestsLink";
+import TestsLink from "../Link";
 import s from "./TestsPaginaation.module.scss";
 
 const TestsPagination = ({ pagination, currentPage, lastPage }) => (
