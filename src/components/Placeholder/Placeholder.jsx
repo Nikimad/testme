@@ -1,6 +1,18 @@
+import cn from "classnames";
 import s from "./Placeholder.module.scss";
 
-const Placeholder = ({ isLoading, children }) =>
-  isLoading ? <div className={s.placeholder} aria-busy={true}>{children}</div> : children;
+const Placeholder = ({ isLoading, isFullHeight, children }) =>
+  isLoading ? (
+    <div
+      className={cn(s.placeholder, {
+        [s.placeholder_fullheight]: isFullHeight,
+      })}
+      aria-busy={true}
+    >
+      {children}
+    </div>
+  ) : (
+    children
+  );
 
 export default Placeholder;
