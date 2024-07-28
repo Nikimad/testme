@@ -11,6 +11,10 @@
     &__content {
         display: grid;
         gap: 1rem;
+
+        &_loading {
+            display: none;
+        }
     }
 
     &__title {
