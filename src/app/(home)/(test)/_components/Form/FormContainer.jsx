@@ -2,20 +2,22 @@ import { useCallback } from "react";
 import { useParams } from "next/navigation";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import Form from "../Form";
-import Controls from "../Controls";
+import Form from "./Form";
 
-const FormikWrapper = ({ questions, children }) => {
+const TestContainer = ({ questions }) => {
   const { testId } = useParams();
 
-  const { initialValues, initialTouched } = questions?.reduce((acc, { id }) => {
-    acc.initialValues[id] = "";
-    acc.initialTouched[id] = true;
-    return acc;
-  }, {
-    initialValues: {},
-    initialTouched: {},
-  });
+  const { initialValues, initialTouched } = questions.reduce(
+    (acc, { id }) => {
+      acc.initialValues[id] = "";
+      acc.initialTouched[id] = true;
+      return acc;
+    },
+    {
+      initialValues: {},
+      initialTouched: {},
+    }
+  );
 
   const defaultInitialState = {
     answers: initialValues,
@@ -35,7 +37,7 @@ const FormikWrapper = ({ questions, children }) => {
 
   const getValidationSchema = useCallback(() => {
     return Yup.object(
-      questions?.reduce((schema, question) => {
+      questions.reduce((schema, question) => {
         const rightAnswers =
           question.question_type === "number"
             ? [question.answer]
@@ -80,12 +82,9 @@ const FormikWrapper = ({ questions, children }) => {
       validateOnBlur={false}
       onSubmit={() => {}}
     >
-      <Form id={testId}>
-        {children}
-        <Controls defaulInitialState={defaultInitialState} />
-      </Form>
+      <Form defaultInitialState={defaultInitialState} questions={questions} />
     </Formik>
   );
 };
 
-export default FormikWrapper;
+export default TestContainer;

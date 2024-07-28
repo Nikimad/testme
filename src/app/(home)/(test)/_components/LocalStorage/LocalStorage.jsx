@@ -1,8 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useFormikContext } from "formik";
-import { Form as FormikForm } from "formik";
 
-const Form = ({ id, children }) => {
+const LocalStorage = ({ id }) => {
   const { values: answers, errors, status } = useFormikContext();
 
   const handleBeforeunload = useCallback(
@@ -25,7 +24,7 @@ const Form = ({ id, children }) => {
     };
   }, [handleBeforeunload]);
 
-  return <FormikForm>{children}</FormikForm>;
+  return null;
 };
 
-export default Form;
+export default LocalStorage;
