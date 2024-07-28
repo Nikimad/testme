@@ -1,19 +1,23 @@
 import cn from "classnames";
 import { Form, Field } from "formik";
-import s from "./TestsController.module.scss";
+import SearchControl from "../SearchControl";
+import DateControl from "../DateControl";
+import PerControl from "../PerControl";
+import Router from "../Router";
+import s from "./Controls.module.scss";
 
-const TestsController = () => (
-  <Form className={s.form}>
-    <Field
-      placeholder="Search..."
-      type="search"
-      name="search"
-      className={s.form__search}
-    />
-    <label className={s.form__field__container}>
-      <span className={s.form__field__label}>Tests per page</span>
-      <Field type="number" name="per" className={s.form__field} />
-    </label>
+const Controls = () => (
+  <Form className={s.controls}>
+    <SearchControl />
+    <PerControl />
+    <DateControl />
+    <Router />
+  </Form>
+);
+
+export default Controls;
+
+/*
     <div className={cn(s.form__field__container, s.form__datesorter)}>
       <span className={s.form__field__label}>Date</span>
       <div className={cn(s.form__field, s.form__datesorter__fields)}>
@@ -40,7 +44,4 @@ const TestsController = () => (
         <div className={s.form__datesorter__selector} aria-hidden={true} />
       </div>
     </div>
-  </Form>
-);
-
-export default TestsController;
+  */

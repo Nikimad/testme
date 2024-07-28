@@ -1,0 +1,16 @@
+@use "@/styles/variables.scss" as *;
+
+.controls {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 1px 1px -1px $clr-netural-600;
+}
+
+
+@media screen and (min-width: 765px) {
+    .controls {
+        grid-template-rows: 1fr;
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+}

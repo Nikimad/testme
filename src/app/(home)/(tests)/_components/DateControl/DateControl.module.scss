@@ -1,0 +1,34 @@
+@use "@/styles/variables.scss" as *;
+
+.datecontrol {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    &__input:checked:focus-visible + &__label {
+        outline: auto;
+    }
+
+    &__label {
+        text-align: center;
+        cursor: pointer;
+        transition: $transition-hover;
+        padding: 0.5rem;
+    }
+
+    &__selector {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        background-color: $clr-netural-300;
+        transition: $transition-hover;
+        z-index: -1;
+    }
+
+    &__input:first-of-type:checked ~ &__selector {
+        right: 50%;
+    }
+}
