@@ -1,0 +1,16 @@
+.logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    &__title {
+        font-size: 1.85em;
+        margin: 0;
+    }
+
+    &__link {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+}
