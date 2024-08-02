@@ -1,15 +1,16 @@
 "use client";
 
-import { useSelector } from "react-redux";
+import { useAppSelector } from "@/models/hooks";
 import useLoading from "@/hooks/useLoading";
 import { authSelectors } from "@/models/auth/selectors";
 import Spinner from "@/components/Spinner";
 import LogoutButton from "../LogoutButton";
 import s from "./Template.module.scss";
 
+
 const Template = ({ children }) => {
-  const isUserLoading = useSelector(authSelectors.selectIsLoading);
-  const isUserAuthorized = useSelector(authSelectors.selectIsUserAuthorized);
+  const isUserLoading = useAppSelector(authSelectors.selectIsLoading);
+  const isUserAuthorized = useAppSelector(authSelectors.selectIsUserAuthorized);
 
   const isLoading = useLoading(isUserLoading);
 
