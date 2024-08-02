@@ -6,10 +6,11 @@ const Logo = () => (
   <div className={s.logo}>
     <Image
       src="/logo.svg"
-      width={25}
-      height={25}
+      width={30}
+      height={30}
       alt="logo"
       aria-hidden={true}
+      className={s.logo__img}
     />
     <h1 className={s.logo__title}>TestMe</h1>
     <Link href="/" className={s.logo__link}>

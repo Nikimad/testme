@@ -1,5 +1,1 @@
-import Controls from "./_components/Controls";
-
-const HeaderPage = () => <Controls />;
-
-export default HeaderPage;
+export { default } from "./_components/Page";
