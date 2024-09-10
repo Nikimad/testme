@@ -2,6 +2,8 @@
 
 .spinner {
     display: block;
+    height: var(--size, 100%);
+    aspect-ratio: 1;
     border: 5px solid $clr-netural-300;
     border-bottom-color: $clr-accent-400;
     border-radius: 50%;
