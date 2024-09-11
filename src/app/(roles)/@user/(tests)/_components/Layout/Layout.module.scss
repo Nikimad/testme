@@ -1,0 +1,46 @@
+@use "@/styles/variables.scss" as *;
+
+.layout {
+    background-color: $clr-netural-100;
+    border: 1px solid $clr-netural-200;
+    border-radius: $br;
+    overflow: hidden;
+
+    &__main {
+        display: grid;
+        height: 302px;
+        background-color: $clr-netural-100;
+        border-top: 1px solid $clr-netural-200;
+        border-bottom: 1px solid $clr-netural-200;
+
+        &__status {
+            place-self: center;
+            font-weight: bold;
+            text-align: center;
+            opacity: $text-opacity;
+        }
+    
+        &__list {
+            display: grid;
+            grid-auto-rows: min-content;
+            align-items: start;
+            overflow: auto;
+        }
+
+        &__list:empty {
+            display: none;
+        }
+
+        &__list:not(:empty) + &__status {
+            display: none;
+        }
+    }
+
+    &__footer {
+        position: relative;
+        isolation: isolate;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
