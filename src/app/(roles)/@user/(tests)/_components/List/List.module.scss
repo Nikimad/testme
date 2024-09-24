@@ -1,0 +1,10 @@
+.list {
+    display: grid;
+    grid-auto-rows: min-content;
+    align-items: start;
+    overflow: auto;
+
+    &:empty {
+        display: none;
+    }
+}
