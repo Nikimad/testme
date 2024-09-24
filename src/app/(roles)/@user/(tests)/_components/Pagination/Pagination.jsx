@@ -1,10 +1,11 @@
 import cn from "classnames";
+import SearchField from "../SearchField";
+import Loader from "../Loader";
 import s from "./Pagination.module.scss";
 
 const Pagination = ({
   currentPage,
   totalPages,
-  onChange,
   onGoToLast,
   onGoToFirst,
 }) => (
@@ -18,14 +19,17 @@ const Pagination = ({
       {"< <"}
       <span className="visually-hidden">Go to first page</span>
     </button>
-    <input
+    <div>
+    <SearchField
+      name="page"
       min={1}
-      max={totalPages}
+      max={totalPages || 1}
       type="number"
-      value={currentPage}
-      onChange={onChange}
       className={cn("input", s.pagination__input)}
+      disabled={totalPages === null}
     />
+    <Loader />
+    </div>
     <button
       className={s.pagination__button}
       type="button"
