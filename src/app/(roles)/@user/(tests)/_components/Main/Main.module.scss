@@ -1,0 +1,13 @@
+@use "@/styles/variables.scss" as *;
+
+.main {
+    display: grid;
+    height: 302px;
+    background-color: $clr-netural-100;
+    border-top: 1px solid $clr-netural-200;
+    border-bottom: 1px solid $clr-netural-200;
+
+    &__list:not(:empty) + &__status {
+        display: none;
+    }
+}
