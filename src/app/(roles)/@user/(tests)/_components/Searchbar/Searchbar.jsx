@@ -1,5 +1,6 @@
-import SearchbarInput from "../SearchbarInput";
 import s from "./Searchbar.module.scss";
+import PerInput from "../PerInput";
+import SearchField from "../SearchField";
 
 const Searchbar = () => (
   <form className={s.searchbar}>
@@ -7,33 +8,24 @@ const Searchbar = () => (
       <label className={s.searchbar__field__label} htmlFor="search">
         Search
       </label>
-      <SearchbarInput
+      <SearchField
         className={s.searchbar__field__input}
         id="search"
         type="search"
         name="search"
-        defaultValue={""}
       />
     </div>
     <div className={s.searchbar__field}>
       <label className={s.searchbar__field__label} htmlFor="per">
         Tests per page
       </label>
-      <SearchbarInput
-        className={s.searchbar__field__input}
-        id="per"
-        type="number"
-        min={1}
-        name="per"
-        defaultValue={5}
-      />
+      <PerInput className={s.searchbar__field__input} />
     </div>
     <fieldset className={s.searchbar__field}>
       <legend className={s.searchbar__field__label}>Sort</legend>
       <div className={s.searchbar__field__radiogroup}>
-        <SearchbarInput
+        <SearchField
           id="created_at_asc"
-          defaultValue="created_at_asc"
           value="created_at_asc"
           type="radio"
           name="sort"
@@ -42,9 +34,8 @@ const Searchbar = () => (
         <label className={s.searchbar__field__label} htmlFor="created_at_asc">
           Asc
         </label>
-        <SearchbarInput
+        <SearchField
           id="created_at_desc"
-          defaultValue="created_at_asc"
           value="created_at_desc"
           type="radio"
           name="sort"
