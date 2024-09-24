@@ -1,11 +1,11 @@
 "use client";
 
 import { useAppSelector } from "@/models/hooks";
-import { selectError, selectIsLoading } from "@/models/tests/selectors";
+import { testsSelectors } from "@/models/tests/selectors";
 
 const Status = () => {
-  const isLoading = useAppSelector(selectIsLoading);
-  const error = useAppSelector(selectError);
+  const isLoading = useAppSelector(testsSelectors.selectIsLoading);
+  const error = useAppSelector(testsSelectors.selectError);
   return isLoading ? (
     "Loading..."
   ) : error ? (
