@@ -1,10 +1,10 @@
 "use client";
 
 import { useAppSelector } from "@/models/hooks";
-import { selectIsLoading } from "@/models/tests/selectors";
+import { testsSelectors } from "@/models/tests/selectors";
 
 const LoaderContainer = ({ children }) => {
-    const isLoading = useAppSelector(selectIsLoading);
+    const isLoading = useAppSelector(testsSelectors.selectIsLoading);
     return isLoading && children;
 };
 
