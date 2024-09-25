@@ -4,7 +4,9 @@ import s from "./Loader.module.scss";
 
 const Loader = () => (
   <LoaderContainer>
-    <Spinner className={s.loader}>Tests</Spinner>
+    <div className={s.loader}>
+      <Spinner>Tests</Spinner>
+    </div>
   </LoaderContainer>
 );
 
