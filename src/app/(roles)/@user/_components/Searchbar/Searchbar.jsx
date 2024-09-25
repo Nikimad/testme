@@ -1,9 +1,11 @@
-import s from "./Searchbar.module.scss";
+import QueryControllers from "../QueryControllers";
 import PerInput from "../PerInput";
 import SearchField from "../SearchField";
+import s from "./Searchbar.module.scss";
 
 const Searchbar = () => (
   <form className={s.searchbar}>
+    <QueryControllers />
     <div className={s.searchbar__field}>
       <label className={s.searchbar__field__label} htmlFor="search">
         Search
