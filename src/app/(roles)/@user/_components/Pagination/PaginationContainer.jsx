@@ -1,7 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 import { useAppSelector } from "@/models/hooks";
 import { testsSelectors } from "@/models/tests/selectors";
 import useWindowRouter from "@/hooks/useWindowRouter";
@@ -9,7 +8,7 @@ import Pagination from "./Pagination";
 import { useFormikContext } from "formik";
 
 const PaginationContainer = () => {
-  const { status: query, setStatus: setQuery, values } = useFormikContext();
+  const { status: query, setStatus: setQuery, values, setFieldValue } = useFormikContext();
   const { push } = useWindowRouter();
   const totalPages = useAppSelector(testsSelectors.selectTotalPages);
 
@@ -17,6 +16,7 @@ const PaginationContainer = () => {
     const newQueryParams = new URLSearchParams(query);
     newQueryParams.set("page", page);
     const newQuery = newQueryParams.toString();
+    setFieldValue("page", page);
     setQuery(newQuery);
     push(newQuery);
   }, [query, setQuery, push])
