@@ -20,8 +20,8 @@ const SearchField = ({ className, enablePush, sideEffect, ...props }) => {
       const userParams = new URLSearchParams(query);
       const queryParams = new URLSearchParams(query);
       value ? userParams.set(name, value) : userParams.delete(name);
-      if (value > min) queryParams.set(name, +value > max ? max : value);
-      if (min === value) queryParams.delete(name);
+      if (value >= min) queryParams.set(name, +value > max ? max : value);
+      if (min === "" && min === value) queryParams.delete(name);
       sideEffect && sideEffect(value, userParams, queryParams);
       replace(userParams.toString());
       setFieldValue(name, value);
