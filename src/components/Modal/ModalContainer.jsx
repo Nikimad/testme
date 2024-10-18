@@ -1,11 +1,8 @@
 import { createPortal } from "react-dom";
 import { useRef, useCallback, useEffect } from "react";
 import Modal from "./Modal";
-import { usePathname } from "next/navigation";
 
 const ModalContainer = ({ title, onClose, children }) => {
-  const pathname = usePathname();
-
   const overlay = useRef(null);
   const modal = useRef(null);
 
@@ -25,14 +22,10 @@ const ModalContainer = ({ title, onClose, children }) => {
 
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [onKeyDown]);
-
-  useEffect(() => {
     return () => {
-      onClose();
-    };
-  }, [pathname, onClose]);
+      document.removeEventListener("keydown", onKeyDown);
+    }
+  }, [onKeyDown, onClose]);
 
   useEffect(() => {
     modal.current?.focus();
