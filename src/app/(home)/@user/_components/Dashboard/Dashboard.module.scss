@@ -1,0 +1,14 @@
+@use "@/styles/variables.scss" as *;
+
+.dashboard {
+    box-shadow: 0 0 0 1px $clr-netural-200;
+    border-radius: $br;
+    overflow: hidden;
+
+    &__footer {
+        position: relative;
+        display: grid;
+        grid-auto-flow: column;
+        background-color: $clr-netural-100;
+    }
+}
