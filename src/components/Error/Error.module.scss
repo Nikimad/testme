@@ -1,0 +1,12 @@
+@use "@/styles/variables.scss" as *;
+
+.error {
+    display: block;
+    position: absolute;
+    color: $warning;
+    padding-top: 0.25rem;
+
+    &::first-letter {
+        text-transform: uppercase;
+    }
+}
