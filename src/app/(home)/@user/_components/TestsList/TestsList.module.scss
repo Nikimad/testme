@@ -1,0 +1,31 @@
+@use "@/styles/variables.scss" as *;
+
+.list {
+    display: grid;
+    grid-auto-rows: min-content;
+    align-items: start;
+    overflow: auto;
+
+    &__container {
+        display: grid;
+        height: 302px;
+        background-color: $clr-netural-100;
+        border-top: 1px solid $clr-netural-200;
+        border-bottom: 1px solid $clr-netural-200;
+    }
+
+    &__status {
+        place-self: center;
+        font-weight: bold;
+        text-align: center;
+        opacity: $text-opacity;
+
+        &:empty {
+            display: none;
+        }
+    }
+
+    &__status:not(:empty)+& {
+        display: none;
+    }
+}
