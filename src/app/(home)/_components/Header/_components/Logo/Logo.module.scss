@@ -1,0 +1,23 @@
+@use "@/styles/variables.scss" as *;
+
+.logo {
+    position: relative;
+    display: flex;
+    gap: 6px;
+    align-items: baseline;
+    width: fit-content;
+
+    &__img {
+        align-self: center;
+    }
+
+    &__title {
+        line-height: 1.75;
+        margin: 0;
+    }
+
+    &__link {
+        position: absolute;
+        inset: 0;
+    }
+}
