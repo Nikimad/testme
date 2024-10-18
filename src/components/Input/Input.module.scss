@@ -1,18 +1,17 @@
 @use "@/styles/variables.scss" as *;
 
 .input {
-    background-color: #fff;
+    display: block;
+    width: 100%;
+    font: inherit;
+    line-height: inherit;
+    border: 1px solid $clr-netural-300;
     border-radius: $br;
-    box-shadow: 0 0 0 1px $clr-netural-200;
+    background-color: transparent;
     padding: 5px 12px;
+    margin-block: 0.25rem;
 
-    &_invalid {
-        box-shadow: 0 0 0 1px $warning;
-    }
-}
-
-@media screen and (min-width: $break-point) {
-    .input {
-        padding: 10px 16px;
+    &[data-invalid="true"] {
+        border-color: $warning;
     }
 }
