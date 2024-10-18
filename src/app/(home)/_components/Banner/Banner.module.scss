@@ -1,0 +1,39 @@
+.banner {
+    display: grid;
+    align-items: center;
+    grid-auto-flow: column;
+
+    & > * {
+        min-width: 328px;
+    }
+
+    &__img {
+        display: none;
+        max-width: 522px;
+        max-height: 472px;
+        width: 100%;
+        height: auto;
+    }
+
+    &__content {
+        display: grid;
+        gap: 0.5rem;
+    }
+
+    &__title {
+        font-size: 3em;
+        margin: 0;
+    }
+
+    &__link {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 765px) {
+    .banner {
+        &__img {
+            display: block;
+        }
+    }
+}
