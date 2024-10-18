@@ -1,18 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import rootSaga from "./sagas";
-import auth from "./auth";
+import authorization from "./authorization";
 import tests from "./tests";
-import questions from "./questions";
+import rootSaga from "./sagas";
 
-export const makeStore = () => {
+export const makeStore = (preloadedState) => {
   const sagaMiddleware = createSagaMiddleware();
-
   const store = configureStore({
+    preloadedState,
     reducer: {
-      auth,
+      authorization,
       tests,
-      questions,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(sagaMiddleware),
