@@ -2,7 +2,7 @@ import Main from "./Main";
 
 const MainContainer = ({ user, children }) => (
   <main className="container">
-    <Main user={user} children={children} />
+    <Main user={user}>{children}</Main>
   </main>
 );
 

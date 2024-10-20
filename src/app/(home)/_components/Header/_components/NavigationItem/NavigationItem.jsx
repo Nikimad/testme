@@ -3,7 +3,9 @@ import Link from "next/link";
 
 const NavigationItem = ({ href, children }) => (
   <NavigationItemContainer href={href}>
-    <Link href={href} className="interactivetext" children={children} />
+    <Link href={href} className="interactivetext">
+      {children}
+    </Link>
   </NavigationItemContainer>
 );
 

@@ -2,6 +2,7 @@ import cn from "classnames";
 import s from "./Pagination.module.scss";
 
 const Pagination = ({
+  inputRef,
   currentPage,
   totalPages,
   onChange,
@@ -21,6 +22,7 @@ const Pagination = ({
         <span className="visually-hidden">Go to first page</span>
       </button>
       <input
+        ref={inputRef}
         name="page"
         min={1}
         max={totalPages || 1}

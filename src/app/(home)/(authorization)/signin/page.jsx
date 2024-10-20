@@ -1,1 +1,3 @@
-export default () => null;
+const SigninPage = () => null;
+
+export default SigninPage;

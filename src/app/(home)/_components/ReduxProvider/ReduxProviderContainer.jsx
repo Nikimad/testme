@@ -3,7 +3,9 @@ import ReduxProvider from "./ReduxProvider";
 
 const ReduxProviderContainer = async ({ children }) => {
   const preloadedState = await getInitialState();
-  return <ReduxProvider preloadedState={preloadedState} children={children} />;
+  return (
+    <ReduxProvider preloadedState={preloadedState}>{children}</ReduxProvider>
+  );
 };
 
 export default ReduxProviderContainer;

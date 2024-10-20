@@ -1,2 +1,5 @@
 import { redirect } from "next/navigation";
-export default () => redirect("/");
+
+const RedirectPage = () => redirect("/");
+
+export default RedirectPage;

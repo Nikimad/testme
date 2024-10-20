@@ -9,7 +9,7 @@ import Pagination from "./Pagination";
 
 const PaginationContainer = () => {
   const searchParams = useSearchParams();
-  const { value, onChange, onBlur } = useSearchState("page", 1, "push");
+  const { value, valueComparer, onChange, onBlur } = useSearchState("page", 1, "push");
 
   const totalPages = useAppSelector(testsSelectors.selectTotalPages) || 1;
 
@@ -34,6 +34,7 @@ const PaginationContainer = () => {
 
   return (
     <Pagination
+      inputRef={valueComparer}
       currentPage={value}
       totalPages={totalPages}
       onChange={handleGoTo}

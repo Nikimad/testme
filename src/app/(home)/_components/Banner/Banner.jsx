@@ -9,7 +9,7 @@ const Banner = () => (
       <p>
         Education is the key to unlocking a world of opportunities. It is a
         journey that empowers individuals to reach their full potential and make
-        a positive impact on society. In today's fast-paced and ever-changing
+        a positive impact on society. In today&apos;s fast-paced and ever-changing
         world, education plays a crucial role in shaping the future.
       </p>
       <Link className={`pill ${s.banner__link}`} href="/signin">

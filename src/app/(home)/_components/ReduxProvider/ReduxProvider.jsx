@@ -11,7 +11,7 @@ const ReduxProvider = ({ preloadedState, children }) => {
     storeRef.current = makeStore(preloadedState);
   }
 
-  return <Provider store={storeRef.current} children={children} />;
+  return <Provider store={storeRef.current}>{children}</Provider>;
 };
 
 export default ReduxProvider;

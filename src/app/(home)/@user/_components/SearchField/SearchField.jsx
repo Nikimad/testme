@@ -11,7 +11,7 @@ const SearchField = ({
   routerAction,
   ...props
 }) => {
-  const { value, searchParam, onChange, onBlur } = useSearchState(
+  const { value, valueComparer, searchParam, onChange, onBlur } = useSearchState(
     name,
     defaultValue || props.value,
     routerAction,
@@ -24,6 +24,7 @@ const SearchField = ({
   return (
     <input
       {...props}
+      ref={valueComparer}
       name={name}
       className={cn("input", className ?? "")}
       onChange={handleChange}
