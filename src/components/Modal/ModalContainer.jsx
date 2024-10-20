@@ -24,7 +24,7 @@ const ModalContainer = ({ title, onClose, children }) => {
     document.addEventListener("keydown", onKeyDown);
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-    }
+    };
   }, [onKeyDown, onClose]);
 
   useEffect(() => {
@@ -38,8 +38,9 @@ const ModalContainer = ({ title, onClose, children }) => {
       onClose={onClose}
       onDismiss={onClick}
       title={title}
-      children={children}
-    />,
+    >
+      {children}
+    </Modal>,
     document.getElementById("modal-root")
   );
 };
