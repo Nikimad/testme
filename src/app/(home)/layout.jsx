@@ -3,7 +3,7 @@ import InertProvider from "./_components/InertProvider";
 import Header from "./_components/Header";
 import Main from "./_components/Main";
 
-export default ({ user, children }) => (
+const HomeLayout = ({ user, children }) => (
   <ReduxProvider>
     <InertProvider>
       <Header />
@@ -11,3 +11,5 @@ export default ({ user, children }) => (
     </InertProvider>
   </ReduxProvider>
 );
+
+export default HomeLayout;
