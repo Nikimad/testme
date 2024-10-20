@@ -9,11 +9,13 @@ const testsSlice = createSlice({
     start,
     finish,
     reject,
+    setQuery: (state, { payload }) => {
+      state.query = payload;
+    },
     getTests: (state) => state,
     getTest: (state) => state,
     success: (state, { payload: { action, ...data } }) => {
       if (action === "getTests") {
-        state.query = data.query;
         state.meta = data.meta;
         state.tests =
           data.tests.length > 0 || data.isReset ? data.tests : state.tests;
