@@ -9,6 +9,7 @@ const ReduxProvider = ({ preloadedState, children }) => {
 
   if (!storeRef.current) {
     storeRef.current = makeStore(preloadedState);
+    console.log(preloadedState);
   }
 
   return <Provider store={storeRef.current}>{children}</Provider>;
