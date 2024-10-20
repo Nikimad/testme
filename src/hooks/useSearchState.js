@@ -1,87 +1,93 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useRef, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useAction } from "@/models/hooks";
 import { testsActions } from "@/models/tests";
-import useWindowPopState from "./useWindowPopstate";
 
 const useSearchState = (
   name,
   defaultValue = "",
   routerAction = "replace",
-  enableEmptyParam
+  enableEmpty
 ) => {
-  const isHistoryPoped = useRef(false);
-
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const router = useRouter();
 
-  const prevValueRef = useRef(defaultValue);
-  const [value, setValue] = useState(
-    searchParams.get(name) || prevValueRef.current
-  );
+  const [value, setValue] = useState(searchParams.get(name) || defaultValue);
+  const prevValueRef = useRef(value);
 
   const searchTests = useAction(testsActions.getTests);
 
-  const getNextQuery = useCallback(
-    (nextParam) => {
+  const getQuery = useCallback(
+    (value) => {
       const nextSearchParams = new URLSearchParams(searchParams);
-      nextParam
-        ? nextSearchParams.set(name, nextParam)
-        : nextSearchParams.delete(name);
-
-      const nextQuery = nextSearchParams.toString();
-
-      return nextQuery;
+      value ? nextSearchParams.set(name, value) : nextSearchParams.delete(name);
+      const query = nextSearchParams.toString();
+      return query;
     },
     [name, searchParams]
   );
 
-  const handleSetValue = useCallback(
-    (nextValue) => {
-      setValue((prevValue) => {
-        if (!nextValue && !enableEmptyParam) {
-          prevValueRef.current = prevValue;
-        }
-        return nextValue;
-      });
+  const navigate = useCallback(
+    (query) => {
+      const router = routerAction === "replace" ? window.history.replaceState : window.history.pushState;
+      router(null, "", `${pathname}${query && `?${query}`}`);
     },
-    [setValue, prevValueRef]
+    [pathname, routerAction]
+  );
+
+  const handleSetValue = useCallback(
+    (value) =>
+      setValue((prevValue) => {
+        prevValueRef.current = prevValue;
+        return value;
+      }),
+    []
   );
 
   const onChange = useCallback(
-    (nextValue, altRouterAction) => {
-      const nextQuery = getNextQuery(nextValue);
-      handleSetValue(nextValue);
-      router[altRouterAction || routerAction](
-        `/${nextQuery && `?${nextQuery}`}`
-      );
-      (nextValue || (!nextValue && enableEmptyParam)) && searchTests(nextQuery);
+    (value) => {
+      const query = getQuery(value);
+      navigate(query);
+      if (value || (!value && enableEmpty)) searchTests(query);
+      handleSetValue(value);
     },
-    [getNextQuery, router, handleSetValue]
+    [enableEmpty, getQuery, navigate, handleSetValue, searchTests]
   );
 
   const onBlur = useCallback(
-    (nextValue, altRouterAction) => {
-      if (!nextValue && !enableEmptyParam) {
-        const nextQuery = getNextQuery(prevValueRef.current);
-        handleSetValue(prevValueRef.current);
-        router[altRouterAction || routerAction](
-          `/${nextQuery && `?${nextQuery}`}`
-        );
+    (value) => {
+      if (!value && !enableEmpty) {
+        if (prevValueRef.current !== defaultValue) {
+          navigate(getQuery(prevValueRef.current));
+        }
+        setValue((prevValue) => {
+          const nextValue = prevValueRef.current;
+          prevValueRef.current = prevValue;
+          return nextValue;
+        });
       }
     },
-    [getNextQuery, handleSetValue, enableEmptyParam, router, prevValueRef]
+    [enableEmpty, defaultValue, getQuery, navigate]
   );
 
-  const restoreValue = useCallback(() => {
-    const currentValue = searchParams.get(name) || prevValueRef.current;
-    if (value !== currentValue) handleSetValue(currentValue);
-  }, [handleSetValue, value, prevValueRef, searchParams]);
-
-  useWindowPopState(restoreValue);
+  const valueComparer = useCallback(
+    (ref) => {
+      if (ref) {
+        if (
+          (ref.value || defaultValue) !=
+          (searchParams.get(ref.name) || defaultValue)
+        ) {
+          handleSetValue(searchParams.get(ref.name) || defaultValue);
+          searchTests(searchParams.toString());
+        }
+      }
+    },
+    [defaultValue, searchParams, handleSetValue, searchTests]
+  );
 
   return {
     value,
+    valueComparer,
     searchParam: searchParams.get(name),
     onChange,
     onBlur,
