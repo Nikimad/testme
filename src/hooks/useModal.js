@@ -1,33 +1,31 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState, useRef } from "react";
 import InertContext from "@/context/InertContext";
 
 const useModal = (openerRef) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalClosed, setIsModalClosed] = useState(false);
+  const isModalClosed = useRef(false);
 
   const { setInert, removeInert } = useContext(InertContext);
 
   const openModal = useCallback(() => {
     isModalOpen || setIsModalOpen(true);
-    isModalClosed && setIsModalClosed(false);
+    isModalClosed.current = false;
     setInert();
-  }, [isModalOpen, isModalClosed, setInert]);
+  }, [isModalOpen, setInert]);
 
   const closeModal = useCallback(() => {
     isModalOpen && setIsModalOpen(false);
-    isModalClosed || setIsModalClosed(true);
+    isModalClosed.current = true;
     removeInert();
-  }, [isModalOpen, isModalClosed, removeInert]);
-
-  useEffect(() => {
-    isModalClosed && openerRef.current?.focus();
-  }, [isModalClosed, openerRef]);
-
-  useEffect(() => {
-    return () => {
-      isModalOpen && removeInert();
-    };
   }, [isModalOpen, removeInert]);
+
+  useEffect(() => {
+    isModalClosed.current && openerRef.current?.focus();
+
+    return () => {
+      isModalOpen && !isModalClosed.current && closeModal();
+    }
+  }, [openerRef, isModalOpen, closeModal]);
 
   return { isModalOpen, openModal, closeModal };
 };
