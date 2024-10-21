@@ -24,10 +24,15 @@ const InertProvider = ({ children }) => {
     rootRef.current.style.setProperty("width", "100%");
   }, [rootRef]);
 
-  const unblockScroll = useCallback(
-    () => rootRef.current.removeAttribute("style"),
-    [rootRef]
-  );
+  const unblockScroll = useCallback(() => {
+    const restoredScrollPosition = Math.abs(
+      rootRef.current.getBoundingClientRect().top
+    );
+    
+    rootRef.current.removeAttribute("style");
+
+    window.scrollTo(0, restoredScrollPosition);
+  }, [rootRef]);
 
   const setInert = useCallback(() => {
     blockScroll();
