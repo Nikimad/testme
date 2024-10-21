@@ -3,12 +3,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useAction } from "@/models/hooks";
 import { testsActions } from "@/models/tests";
 
-const useSearchState = (
-  name,
-  defaultValue = "",
-  routerAction = "replace",
-  enableEmpty
-) => {
+const useSearchState = (name, defaultValue = "", enableEmpty) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -28,11 +23,13 @@ const useSearchState = (
   );
 
   const navigate = useCallback(
-    (query) => {
-      const router = routerAction === "replace" ? window.history.replaceState : window.history.pushState;
-      router(null, "", `${pathname}${query && `?${query}`}`);
+    (query, routerAction) => {
+      const url = `${pathname}${query && `?${query}`}`;
+      routerAction === "replace"
+        ? window.history.replaceState(null, "", url)
+        : window.history.pushState(null, "", url);
     },
-    [pathname, routerAction]
+    [pathname]
   );
 
   const handleSetValue = useCallback(
@@ -45,10 +42,12 @@ const useSearchState = (
   );
 
   const onChange = useCallback(
-    (value) => {
+    (value, routerAction) => {
       const query = getQuery(value);
-      navigate(query);
-      if (value || (!value && enableEmpty)) searchTests(query);
+      navigate(query, !value && !enableEmpty ? "replace" : routerAction);
+      if (value || (!value && enableEmpty)) {
+        searchTests(query);
+      }
       handleSetValue(value);
     },
     [enableEmpty, getQuery, navigate, handleSetValue, searchTests]
@@ -58,11 +57,11 @@ const useSearchState = (
     (value) => {
       if (!value && !enableEmpty) {
         if (prevValueRef.current !== defaultValue) {
-          navigate(getQuery(prevValueRef.current));
+          navigate(getQuery(prevValueRef.current), "replace");
         }
         setValue((prevValue) => {
           const nextValue = prevValueRef.current;
-          prevValueRef.current = prevValue;
+          prevValueRef.current = prevValue || prevValueRef.current;
           return nextValue;
         });
       }
