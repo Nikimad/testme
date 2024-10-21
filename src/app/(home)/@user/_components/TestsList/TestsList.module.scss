@@ -8,7 +8,7 @@
 
     &__container {
         display: grid;
-        height: 302px;
+        height: 387px;
         background-color: $clr-netural-100;
         border-top: 1px solid $clr-netural-200;
         border-bottom: 1px solid $clr-netural-200;
@@ -27,5 +27,13 @@
 
     &__status:not(:empty)+& {
         display: none;
+    }
+}
+
+@media screen and (min-width: $break-point) {
+    .list {
+        &__container {
+            height: 302px;
+        }
     }
 }
