@@ -8,18 +8,16 @@ const SearchField = ({
   defaultValue,
   className,
   enableEmpty,
-  routerAction,
   ...props
 }) => {
   const { value, valueComparer, searchParam, onChange, onBlur } = useSearchState(
     name,
     defaultValue || props.value,
-    routerAction,
     enableEmpty,
   );
 
-  const handleChange = ({ target: { value } }) => onChange(value);
-  const handleBlur = ({ target: { value } }) => onBlur(value);
+  const handleChange = ({ target: { value } }) => onChange(value, "replace");
+  const handleBlur = ({ target: { value } }) => onBlur(value, "replace");
 
   return (
     <input
