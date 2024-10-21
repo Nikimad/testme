@@ -15,10 +15,10 @@ const Tests = () => {
   const getTests = useAction(testsActions.getTests);
 
   useEffect(() => {
-    if (lastQuery === null) {
+    if (lastQuery === null || lastQuery !== currentQuery) {
       getTests(currentQuery);
     }
-  }, [lastQuery, currentQuery, getTests]);
+  }, []);
 
   return tests.map((test) => <Test key={test.id} test={test} />);
 };
