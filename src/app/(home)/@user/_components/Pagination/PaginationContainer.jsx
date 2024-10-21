@@ -9,7 +9,7 @@ import Pagination from "./Pagination";
 
 const PaginationContainer = () => {
   const searchParams = useSearchParams();
-  const { value, valueComparer, onChange, onBlur } = useSearchState("page", 1, "push");
+  const { value, valueComparer, onChange, onBlur } = useSearchState("page", 1);
 
   const totalPages = useAppSelector(testsSelectors.selectTotalPages) || 1;
 
@@ -18,11 +18,11 @@ const PaginationContainer = () => {
     [onChange]
   );
   const handleGoTo = useCallback(
-    ({ target: { value } }) => onChange(value),
+    ({ target: { value } }) => onChange(value, "push"),
     [onChange]
   );
   const handleGoToLast = useCallback(
-    () => onChange(totalPages),
+    () => onChange(totalPages, "push"),
     [totalPages, onChange]
   );
   const handleBlur = useCallback(({ target: { value }}) => onBlur(value), [onBlur]);

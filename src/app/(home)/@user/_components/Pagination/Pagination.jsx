@@ -21,9 +21,11 @@ const Pagination = ({
         {currentPage == 1 ? <>&#9665;&#9665;</> : <>&#9664;&#9664;</>}
         <span className="visually-hidden">Go to first page</span>
       </button>
+      <label className="visually-hidden" htmlFor="page">Page</label>
       <input
         ref={inputRef}
         name="page"
+        id="page"
         min={1}
         max={totalPages || 1}
         onChange={onChange}
