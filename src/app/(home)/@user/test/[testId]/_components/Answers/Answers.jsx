@@ -5,7 +5,7 @@ const Answers = ({ name, type, answers, validate }) => (
   <fieldset className={s.answers} aria-describedby={`${name}-error`}>
     <legend className="visually-hidden">Answers</legend>
     {answers.map((answer) => (
-      <div key={answer.id} className={s.answers__answer}>
+      <label key={answer.id} className={s.answers__answer}>
         <BoxField
           name={name}
           id={`answer_${answer.id}`}
@@ -13,8 +13,8 @@ const Answers = ({ name, type, answers, validate }) => (
           value={answer.text}
           validate={validate}
         />
-        <label htmlFor={`answer_${answer.id}`}>{answer.text}</label>
-      </div>
+        <span>{answer.text}</span>
+      </label>
     ))}
   </fieldset>
 );
