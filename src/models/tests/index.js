@@ -26,6 +26,7 @@ const testsSlice = createSlice({
       ) {
         state.tests = [...state.tests, data];
       }
+      state.error = null;
     },
   },
 });
