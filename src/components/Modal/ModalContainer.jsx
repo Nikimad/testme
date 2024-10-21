@@ -4,7 +4,6 @@ import Modal from "./Modal";
 
 const ModalContainer = ({ title, onClose, children }) => {
   const overlay = useRef(null);
-  const modal = useRef(null);
 
   const onClick = useCallback(
     (e) => {
@@ -20,6 +19,10 @@ const ModalContainer = ({ title, onClose, children }) => {
     [onClose]
   );
 
+  const modalOnRender = useCallback((el) => {
+    el?.focus()
+  }, []);
+
   useEffect(() => {
     document.addEventListener("keydown", onKeyDown);
     return () => {
@@ -27,14 +30,10 @@ const ModalContainer = ({ title, onClose, children }) => {
     };
   }, [onKeyDown, onClose]);
 
-  useEffect(() => {
-    modal.current?.focus();
-  }, []);
-
   return createPortal(
     <Modal
       overlay={overlay}
-      modal={modal}
+      modal={modalOnRender}
       onClose={onClose}
       onDismiss={onClick}
       title={title}
