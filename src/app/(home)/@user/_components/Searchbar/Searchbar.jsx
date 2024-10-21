@@ -1,5 +1,6 @@
 import SearchField from "../SearchField";
 import PerInput from "../PerInput";
+import Sort from "../Sort";
 import s from "./Searchbar.module.scss";
 
 const Searchbar = () => (
@@ -13,7 +14,6 @@ const Searchbar = () => (
         id="search"
         type="search"
         name="search"
-        routerAction="replace"
         enableEmpty={true}
       />
     </div>
@@ -26,23 +26,16 @@ const Searchbar = () => (
     <fieldset className={s.searchbar__field}>
       <legend className={s.searchbar__field__label}>Sort</legend>
       <div className={s.searchbar__field__radiogroup}>
-        <SearchField
+        <Sort
           id="created_at_asc"
           value="created_at_asc"
-          type="radio"
-          name="sort"
-          className="visually-hidden"
         />
         <label className={s.searchbar__field__label} htmlFor="created_at_asc">
           Asc
         </label>
-        <SearchField
+        <Sort
           id="created_at_desc"
           value="created_at_desc"
-          defaultValue="created_at_desc"
-          type="radio"
-          name="sort"
-          className="visually-hidden"
         />
         <label className={s.searchbar__field__label} htmlFor="created_at_desc">
           Desc
