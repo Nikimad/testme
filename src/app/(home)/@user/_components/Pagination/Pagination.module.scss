@@ -22,8 +22,8 @@
 
     &__input {
         flex-basis: 0;
-        text-align: right;
-        min-width: 8ch;
+        text-align: center;
+        min-width: 6.5ch;
         background-color: transparent;
     }
 
@@ -33,6 +33,15 @@
 
         &:not(:disabled):hover {
             background-color: $clr-netural-200;
+        }
+    }
+}
+
+@media screen and (min-width: $break-point) {
+    .pagination {
+        &__input {
+            text-align: right;
+            min-width: 8ch;
         }
     }
 }
