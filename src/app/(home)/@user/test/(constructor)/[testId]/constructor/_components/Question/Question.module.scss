@@ -1,0 +1,15 @@
+.question {
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    padding: 0.5rem;
+    
+    &_active {
+        display: none;
+    }
+
+    &__controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
