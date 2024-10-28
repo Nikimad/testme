@@ -3,7 +3,7 @@ import Input from "../Input";
 import Error from "../Error";
 import s from "./Field.module.scss";
 
-const Field = ({ isLabelHidden, label, name, ...props }) => (
+const Field = ({ isLabelHidden, label, name, onRender, ...props }) => (
   <div className={s.field}>
     <label
       htmlFor={`${name}_field`}
