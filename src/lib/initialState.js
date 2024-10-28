@@ -1,4 +1,11 @@
 export const initialState = {
+  constructor: {
+    isLoading: false,
+    error: null,
+    id: null,
+    title: "",
+    questions: [],
+  },
   authorization: {
     user: null,
     isLoading: false,
