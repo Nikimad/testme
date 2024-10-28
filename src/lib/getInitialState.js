@@ -22,6 +22,12 @@ const getInitialState = async () => {
       if (testId) {
         const test = await tests.getTest({ id: testId, cookies: cookiesString });
         initialState.tests.tests = [test];
+        if (user.is_admin && url.pathname.endsWith("/constructor")) {
+          initialState.constructor = {
+            ...initialState.constructor,
+            ...test,
+          };
+        }
       }
       if (!testId) {
         initialState.tests.query = query;
