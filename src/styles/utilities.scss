@@ -1,5 +1,21 @@
-.w-100 {
+@use "./variables.scss" as *; 
+
+.w_100 {
     width: 100%;
+}
+
+.h_100 {
+    height: 100%;
+}
+
+.m {
+    &_0 {
+        margin: 0;
+    }
+
+    &_t0 {
+        margin-top: 0;
+    }
 }
 
 .visually-hidden {
@@ -12,15 +28,48 @@
     width: 1px;
 }
 
-.loading {
-    animation: appear 1s linear infinite;
+
+.container {
+    width: min($max-width, 100% - 0.5rem * 2);
+    padding: 1rem;
+    margin: 0 auto;
 }
 
-@keyframes appear {
-    25% {
-        opacity: 0.5;
+.pill {
+    width: fit-content;
+    color: $clr-netural-100;
+    background-color: $clr-accent-400;
+    border-radius: $br;
+
+    &:hover,
+    &:focus-visible {
+        background-color: $clr-accent-500;
     }
-    75% {
-        opacity: 0.2;
+    
+    &:active {
+        background-color: $clr-accent-600;
+    }
+}
+
+.interactivetext {
+    background-color: transparent;
+    
+    &:hover,
+    &:focus-visible {
+        color: $clr-accent-400;
+    }
+
+    &:active {
+        color: $clr-accent-500;
+    }
+}
+
+.pill, .interactivetext {
+    padding: 10px;
+}
+
+@media screen and (min-width: $break-point) {
+    .container {
+        width: min($max-width, 100% - 1rem * 2);
     }
 }

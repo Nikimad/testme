@@ -1,0 +1,18 @@
+@use "@/styles/variables.scss" as *;
+
+.form {
+    &__container {
+        background-color: $clr-netural-100;
+        border-radius: $br;
+        box-shadow: 0 1px 10px 1px $clr-netural-200;
+        padding: 2rem 2rem 2.5rem 2rem;
+    }
+
+    &__header {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1rem;
+    }
+}

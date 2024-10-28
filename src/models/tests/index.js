@@ -1,39 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "@/lib/initialState";
+import { start, finish, reject } from "../reducers";
 
 const testsSlice = createSlice({
   name: "tests",
-  initialState: {
-    tests: [],
-    meta: {
-      total_count: 0,
-      total_pages: 0,
-    },
-    is_loading: true,
-  },
+  initialState: initialState.tests,
   reducers: {
-    getTests: (state) => {
-      state.is_loading = true;
-      return state;
+    start,
+    finish,
+    reject,
+    setQuery: (state, { payload }) => {
+      state.query = payload;
     },
-    getTest: (state) => {
-      state.is_loading = true;
-      return state;
-    },
-    fetchSuccess: (state, { payload }) => {
-      state.is_loading = false;
-      if (payload.meta) {
-        state.tests = payload.tests;
-        state.meta = payload.meta;
+    getTests: (state) => state,
+    getTest: (state) => state,
+    success: (state, { payload: { action, ...data } }) => {
+      if (action === "getTests") {
+        state.meta = data.meta;
+        state.tests =
+          data.tests.length > 0 || data.isReset ? data.tests : state.tests;
       }
-      if (!payload.meta) {
-        state.tests = [...state.tests, payload];
+      if (
+        action === "getTest" &&
+        !state.tests.find(({ id }) => id === data.id)
+      ) {
+        state.tests = [...state.tests, data];
       }
-      return state;
+      state.error = null;
     },
-    fetchReject: (state, { payload }) => {
-      state.is_loading = false;
-      return state;
-    }
   },
 });
 

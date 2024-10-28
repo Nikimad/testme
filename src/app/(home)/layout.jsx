@@ -1,18 +1,15 @@
-"use client";
+import ReduxProvider from "./_components/ReduxProvider";
+import InertProvider from "./_components/InertProvider";
+import Header from "./_components/Header";
+import Main from "./_components/Main";
 
-import Dashboard from "@/components/Dashboard";
-import Header from "@/components/Header";
-import useAuth from "@/hooks/useAuth";
-
-const HomeLayout = ({ children }) => {
-  const isUserAuthorized = useAuth();
-
-  return (
-    <>
+const HomeLayout = ({ user, children }) => (
+  <ReduxProvider>
+    <InertProvider>
       <Header />
-      <main>{isUserAuthorized ? children : <Dashboard />}</main>
-    </>
-  );
-};
+      <Main user={user}>{children}</Main>
+    </InertProvider>
+  </ReduxProvider>
+);
 
 export default HomeLayout;
