@@ -4,6 +4,7 @@ import TestModal from "../TestModal";
 import s from "./Test.module.scss";
 
 const Test = ({
+  isUserAdmin,
   test,
   linkRef,
   isModalOpen,
@@ -21,6 +22,11 @@ const Test = ({
       {test.title}
     </Link>
     <span>{new Date(test.created_at).toDateString()}</span>
+    {isUserAdmin && (
+      <Link href={`/test/${test.id}/constructor`} className="interactivetext">
+        Edit
+      </Link>
+    )}
     {isModalOpen ? (
       <TestModal test={test} onClose={onModalClose} onConfirm={onConfirm} />
     ) : null}

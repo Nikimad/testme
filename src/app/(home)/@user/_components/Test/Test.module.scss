@@ -2,7 +2,9 @@
 
 .test {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr;
+  gap: 3rem;
   align-items: center;
   box-shadow: 0 1px 0 0 $clr-netural-200;
   padding: 0.5rem;
