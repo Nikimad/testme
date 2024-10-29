@@ -6,20 +6,18 @@ import { constructorActions } from "@/models/constructor";
 import { constructorSelectors } from "@/models/constructor/selectors";
 import { REQUIERD_STRING } from "@/lib/messages";
 
-const QuestionFieldContainer = ({ name, i, onFinish }) => {
+const QuestionFieldContainer = ({ name, questionId, onFinish }) => {
   const { id } = useAppSelector(constructorSelectors.selectTest);
-  const questions = useAppSelector(constructorSelectors.selectQuestions);
+  //const questions = useAppSelector(constructorSelectors.selectQuestions);
 
-  const [index, setIndex] = useState(i);
+  const [index, setIndex] = useState();
 
   const {
-    values: { question: newDraft, questions: { [i]: reDraft } },
+    values: { questions, question },
     setStatus,
     setFieldError,
     setFieldValue,
   } = useFormikContext();
-
-  const question = reDraft || newDraft;
 
   const addQuestion = useAction(constructorActions.addQuestion);
   const editQuestion = useAction(constructorActions.editQuestion);
@@ -32,7 +30,7 @@ const QuestionFieldContainer = ({ name, i, onFinish }) => {
         question_type: question.question_type,
       };
       setFieldError("question.title");
-      setIndex(questions.length);
+      //setIndex(questions.length);
       return addQuestion({ id, body: newQuestion });
     }
     setFieldError("question.title", REQUIERD_STRING);
