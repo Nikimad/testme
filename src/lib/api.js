@@ -1,4 +1,20 @@
 import { _get, _post, _patch, _delete } from "./_fetch";
+import {
+  _experemental_get,
+  _experemental_post,
+  _experemental_patch,
+  _experemental_delete,
+} from "./_fetch";
+
+const endpoints = {
+  signin: "signin",
+  signup: "signup",
+  logout: "logout",
+  getUser: "users/current",
+  tests: "tests",
+  questions: "questions",
+  answers: "answers",
+};
 
 export const authorizationEndpoints = {
   signin: "signin",
@@ -28,4 +44,20 @@ export const tests = {
     _get(`${testsEndpoints.get}/${id}`, {
       Cookie: cookies,
     }),
+};
+
+export const constructor = {
+  addTest: (body) => _experemental_post(endpoints.tests, {}, { body }),
+  editTest: ({ id, ...body }) =>
+    _experemental_patch(`${endpoints.tests}/${id}`, {}, { body }),
+  deleteTest: (id) => _experemental_delete(`${endpoints.tests}/${id}`),
+  addQuestion: ({ id, body }) =>
+    _experemental_post(
+      `${endpoints.tests}/${id}/${endpoints.questions}`,
+      {},
+      { body }
+    ),
+  editQuestion: ({ id, body }) =>
+    _experemental_patch(`${endpoints.questions}/${id}`, {}, { body }),
+  deleteQuestion: (id) => _experemental_delete(`${endpoints.questions}/${id}`),
 };
