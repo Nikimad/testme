@@ -7,18 +7,18 @@ export const initialState = {
     questions: [],
   },
   authorization: {
-    user: null,
     isLoading: false,
     error: null,
+    user: null,
   },
   tests: {
+    isLoading: false,
+    error: null,
     query: null,
     tests: [],
     meta: {
       total_count: 1,
       total_pages: 1,
     },
-    isLoading: false,
-    error: null,
   },
 };
