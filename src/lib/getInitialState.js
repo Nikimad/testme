@@ -6,7 +6,7 @@ const getInitialState = async () => {
   const url = new URL(headers().get("x-url"));
   const pathnameArr = url.pathname.split("/").filter(Boolean);
 
-  const testId = pathnameArr[pathnameArr.indexOf("test") + 1];
+  const testId = Number(pathnameArr[pathnameArr.indexOf("test") + 1]);
   const query = url.searchParams.toString();
   const cookiesString = cookies().toString();
 
@@ -22,16 +22,16 @@ const getInitialState = async () => {
       if (testId) {
         const test = await tests.getTest({ id: testId, cookies: cookiesString });
         initialState.tests.tests = [test];
-        if (user.is_admin && url.pathname.endsWith("/constructor")) {
-          initialState.constructor = {
-            ...initialState.constructor,
-            ...test,
-          };
+        if (initialState.authorization.user.is_admin && url.pathname.endsWith("/constructor")) {
+          initialState.constructor.id = test.id;
+          initialState.constructor.title = test.title;
+          initialState.constructor.questions = test.questions;
         }
       }
       if (!testId) {
         initialState.tests.query = query;
         const data = await tests.getTests({ query, cookies: cookiesString });
+        console.log(data);
         initialState.tests.meta = data.meta;
         initialState.tests.tests = data.tests;
       }
