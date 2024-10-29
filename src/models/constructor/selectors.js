@@ -7,11 +7,13 @@ const selectConstructor = createSelector(
 
 
 const selectIsLoading = createSelector(selectConstructor, ({ isLoading }) => isLoading);
+const selectError = createSelector(selectConstructor, ({ error }) => error);
 const selectTest = createSelector(selectConstructor, ({ id, title }) => ({ id, title }));
 const selectQuestions = createSelector(selectConstructor, ({ questions }) => questions);
 
 export const constructorSelectors = {
   selectIsLoading,
+  selectError,
   selectTest,
-  selectQuestions
+  selectQuestions,
 }; 

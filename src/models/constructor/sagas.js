@@ -1,82 +1,48 @@
 import { _delete, _patch, _post } from "@/lib/_fetch";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { constructorActions } from ".";
+import { constructor as constructorAPI } from "@/lib/api";
+import getSagaWrapper from "@/lib/getSagaWrapper";
 
-const _addTest = (body) => _post("tests", {}, { body });
-const _editTest = ({id, body}) => _patch(`tests/${id}`, {}, { body });
-const _deleteTest = (id) => _delete(`tests/${id}`);
-const _addQuestion = ({ id, body }) => _post(`tests/${id}/questions`, {}, { body });
-const _editQuestion = ({ id, body }) => _patch(`questions/${id}`, {}, { body });
-const _deleteQuestion = (id) => _delete(`questions/${id}`);
+const sagaWrapper = getSagaWrapper(constructorActions);
 
-function* addTest({ payload }) {
-    try {
-        yield put(constructorActions.start());
-        const test = yield call(_addTest, payload);
-        yield put(constructorActions.addTestSuccess(test));
-    } catch (error) {
-        yield put(constructorActions.reject(error));
-    } finally {
-        yield put(constructorActions.finish());
-    }
-}
+const addTest = sagaWrapper(function* addTestSaga({ payload }) {
+  const [error, test] = yield call(constructorAPI.addTest, payload);
+  yield test && put(constructorActions.addTestSuccess(test));
+  return error;
+});
 
-function* deleteTest({ payload }) {
-    try {
-        yield call(_deleteTest, payload);
-    } catch {}
-}
+const editTest = sagaWrapper(function* editTestSaga({ payload }) {
+  const [error] = yield call(constructorAPI.editTest, payload);
+  return error;
+});
 
-function* addQuestion({ payload }) {
-    try {
-        yield put(constructorActions.start());
-        const question = yield call(_addQuestion, payload);
-        yield put(constructorActions.addQuestionSuccess(question));
-    } catch (error) {
-        yield put(constructorActions.reject(error));
-    } finally {
-        yield put(constructorActions.finish());
-    }
-}
+const deleteTest = sagaWrapper(function* deleteTestSaga({ payload }) {
+  const [error] = yield call(constructorAPI.deleteTest, payload);
+  return error;
+});
 
-function* editQuestion({ payload }) {
-    try {
-        yield put(constructorActions.start());
-        yield call(_editQuestion, payload);
-    } catch (error) {
-        yield put(constructorActions.reject(error));
-    } finally {
-        yield put(constructorActions.finish());
-    }
-}
+const addQuestion = sagaWrapper(function* addQuestionSaga({ payload }) {
+  const [error, question] = yield call(constructorAPI.addQuestion, payload);
+  yield question && put(constructorActions.addQuestionSuccess(question));
+  return error;
+});
 
-function* deleteQuestion({ payload }) {
-    try {
-        yield put(constructorActions.start());
-        yield call(_deleteQuestion, payload);
-    } catch (error) {
-        yield put(constructorActions.reject(error));
-    } finally {
-        yield put(constructorActions.finish());
-    }
-}
+const editQuestion = sagaWrapper(function* editQuestionSaga({ payload }) {
+  const [error] = yield call(constructorAPI.editQuestion, payload);
+  return error;
+});
 
-function* editTest({ payload : {id, ...body} }) {
-    yield put(constructorActions.start());
-    try {
-        yield call(_editTest, { id, body });
-    } catch (error) {
-        yield put(constructorActions.reject(error));
-    } finally {
-        yield put(constructorActions.finish());
-    }
-}
+const deleteQuestion = sagaWrapper(function* deleteQuestionSaga({ payload }) {
+  const [error] = yield call(constructorAPI.deleteQuestion, payload);
+  return error;
+});
 
 export default function* constructorSaga() {
-    yield takeLatest(constructorActions.addTest, addTest);
-    yield takeLatest(constructorActions.editTest, editTest);
-    yield takeLatest(constructorActions.deleteTest, deleteTest);
-    yield takeLatest(constructorActions.addQuestion, addQuestion);
-    yield takeLatest(constructorActions.editQuestion, editQuestion);
-    yield takeLatest(constructorActions.deleteQuestion, deleteQuestion);
+  yield takeLatest(constructorActions.addTest, addTest);
+  yield takeLatest(constructorActions.editTest, editTest);
+  yield takeLatest(constructorActions.deleteTest, deleteTest);
+  yield takeLatest(constructorActions.addQuestion, addQuestion);
+  yield takeLatest(constructorActions.editQuestion, editQuestion);
+  yield takeLatest(constructorActions.deleteQuestion, deleteQuestion);
 }
