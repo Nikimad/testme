@@ -2,15 +2,15 @@
 
 import { useState, useRef, useCallback } from "react";
 import InertContext from "@/context/InertContext";
+import ContentRoot from "../ContentRoot";
 
 const InertProvider = ({ children }) => {
   const rootRef = useRef(null);
   const [isInert, setIsInert] = useState(false);
 
   const blockScroll = useCallback(() => {
-    if (
-      document.documentElement.scrollHeight === rootRef.current.scrollHeight
-    ) {
+    const isScrollVissible = window.innerHeight < document.documentElement.scrollHeight;
+    if (isScrollVissible) {
       rootRef.current.style.setProperty(
         "bottom",
         `-${Math.abs(
@@ -28,7 +28,7 @@ const InertProvider = ({ children }) => {
     const restoredScrollPosition = Math.abs(
       rootRef.current.getBoundingClientRect().top
     );
-    
+
     rootRef.current.removeAttribute("style");
 
     window.scrollTo(0, restoredScrollPosition);
@@ -46,9 +46,9 @@ const InertProvider = ({ children }) => {
 
   return (
     <InertContext.Provider value={{ setInert, removeInert }}>
-      <div id="content-root" ref={rootRef} {...(isInert && { inert: "true" })}>
+      <ContentRoot rootRef={rootRef} isInert={isInert}>
         {children}
-      </div>
+      </ContentRoot>
       <div id="modal-root"></div>
     </InertContext.Provider>
   );
