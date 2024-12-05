@@ -1,0 +1,14 @@
+@use "@/styles/variables.scss" as *;
+
+.select {
+    &__popup {
+        background-color: $clr-netural-100;
+        box-shadow: 0 0 0 1px $clr-netural-200;
+        border-radius: $br;
+        overflow: hidden;
+    }
+
+    &__option {
+        padding: 10px 12px;
+    }
+}
