@@ -1,13 +1,14 @@
 "use client";
 
-import { authorizationSelectors } from "@/models/authorization/selectors";
 import { useAppSelector } from "@/models/hooks";
+import { authorizationSelectors } from "@/models/authorization/selectors";
 
-const UserProvider = ({ user, children }) => {
+const Main = ({ user, children }) => {
   const isUserAuthorized = useAppSelector(
     authorizationSelectors.selectIsUserAuthorized
   );
+
   return isUserAuthorized ? user : children;
 };
 
-export default UserProvider;
+export default Main;
