@@ -15,8 +15,11 @@ button, a {
   color: inherit;
   text-decoration: none;
   border: none;
-  cursor: pointer;
   transition: $transition-hover;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 input {
@@ -35,12 +38,12 @@ ul {
 }
 
 .body {
+  position: relative;
   font-size: 14px;
   font-family: sans-serif;
   line-height: $lh-prime;
   color: $clr-prim-400;
-  height: 100vh;
-  height: 100svh;
+  min-height: 100svh;
   margin: 0;
 }
 
