@@ -1,0 +1,13 @@
+.combobox {
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: auto;
+  }
+
+  &_focushidden {
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.listbox {
+  background-color: inherit;
+  position: absolute;
+  z-index: 1;
+  bottom: -1px;
+  width: 100%;
+  transform: translateY(100%);
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+
+  &[aria-hidden="true"] {
+    display: none;
+  }
+}

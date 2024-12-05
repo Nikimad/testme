@@ -1,0 +1,11 @@
+@use "@/styles/variables.scss" as *;
+
+.option {
+    display: block;
+    cursor: pointer;
+    transition: $transition-hover;
+
+    &_selected {
+        background-color: $clr-netural-200;
+    }
+}
