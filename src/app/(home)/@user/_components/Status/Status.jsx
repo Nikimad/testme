@@ -13,7 +13,7 @@ const Status = () => {
   const error = useAppSelector(testsSelectors.selectError);
 
   const getStatus = useCallback(() => {
-    if (error) return error;
+    if (error) return error?.error;
 
     if (meta.total_pages === 0) {
       return isLoading
@@ -22,6 +22,7 @@ const Status = () => {
             searchParams.size === 0 ? "yet" : "with this search params"
           }`;
     }
+
     return null;
   }, [error, isLoading, meta, searchParams]);
 
