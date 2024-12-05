@@ -8,7 +8,7 @@ import { testsActions } from "@/models/tests";
 import Test from "../Test";
 
 const Tests = () => {
-  const tests = useAppSelector(testsSelectors.selectTests);
+  const tests = useAppSelector(testsSelectors.selectAll);
   const lastQuery = useAppSelector(testsSelectors.selectQuery);
   const currentQuery = useSearchParams().toString();
 
