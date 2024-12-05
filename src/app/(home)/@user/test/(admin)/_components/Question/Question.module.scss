@@ -1,0 +1,17 @@
+@use "@/styles/variables.scss" as *;
+
+.question {
+    display: grid;
+    gap: 1rem;
+
+    &,
+    &__answers {
+        box-shadow: 0 0 0 1px $clr-netural-200;
+        border-radius: $br;
+        padding: 1rem;
+    }
+
+    &__answers {
+        padding-left: 2rem;
+    }
+}
