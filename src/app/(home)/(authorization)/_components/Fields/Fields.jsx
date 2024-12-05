@@ -1,17 +1,17 @@
 import FieldsContainer from "./FieldsContainer";
 import Field from "@/components/Field";
-import Error from "@/components/Error";
+import ErrorMessage from "@/components/ErrorMessage";
 import Title from "../Title";
 
 const Fields = ({ children }) => (
   <FieldsContainer>
-    <Field name="username" label="Username" />
-    <Field name="password" label="Password" />
+    <Field id="username" name="username" label="Username" />
+    <Field id="password" name="password" label="Password" />
     {children}
     <button type="submit" className="pill">
       <Title />
     </button>
-    <Error name="isSignup" />
+    <ErrorMessage name="isSignup" />
   </FieldsContainer>
 );
 
