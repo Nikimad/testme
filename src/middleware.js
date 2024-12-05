@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 
-export function middleware(request) {
+export async function middleware(request) {
+  const url = new URL(request.url);
+
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-url", request.url);
+  requestHeaders.set("x-url", url);
 
   return NextResponse.next({
     request: {
