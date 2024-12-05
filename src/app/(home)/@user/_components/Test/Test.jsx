@@ -11,6 +11,7 @@ const Test = ({
   onModalClose,
   onClick,
   onConfirm,
+  onEdit,
 }) => (
   <li className={s.test}>
     <Link
@@ -23,7 +24,7 @@ const Test = ({
     </Link>
     <span>{new Date(test.created_at).toDateString()}</span>
     {isUserAdmin && (
-      <Link href={`/test/${test.id}/constructor`} className="interactivetext">
+      <Link href={`/test/edit/${test.id}`} className="interactivetext" onClick={onEdit}>
         Edit
       </Link>
     )}

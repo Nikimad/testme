@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import useModal from "@/hooks/useModal";
 import Test from "./Test";
-import { useAppSelector } from "@/models/hooks";
+import { useAction, useAppSelector } from "@/models/hooks";
 import { authorizationSelectors } from "@/models/authorization/selectors";
 
 const TestContainer = ({ test }) => {
@@ -18,10 +18,15 @@ const TestContainer = ({ test }) => {
     openModal();
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = useCallback(() => {
     closeModal();
     router.push(`test/${test.id}`);
-  };
+  }, [test, closeModal, router])
+
+  const handleEdit = useCallback((e) => {
+    e.preventDefault();
+    router.push(`/test/edit/${test.id}`);
+  }, [test, router]);
 
   return (
     <Test
@@ -32,6 +37,7 @@ const TestContainer = ({ test }) => {
       onModalClose={closeModal}
       onClick={handleClick}
       onConfirm={handleConfirm}
+      onEdit={handleEdit}
     />
   );
 };
