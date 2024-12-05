@@ -1,0 +1,19 @@
+@use "@/styles/variables.scss" as *;
+
+.sort {
+    display: flex;
+    gap: 1px;
+
+    &__label {
+        text-align: center;
+        cursor: pointer;
+    }
+
+    &__input:checked + &__label {
+        background-color: $clr-netural-200;
+    }
+
+    &__input:focus-visible + &__label {
+        outline: auto;
+    }
+}
