@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import ErrorPage from "@/components/ErrorPage";
 
-const RedirectPage = () => redirect("/");
+const NoRoutePage = () => <ErrorPage text="Page not found" />
 
-export default RedirectPage;
+export default NoRoutePage;
