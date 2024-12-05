@@ -1,0 +1,66 @@
+@use "@/styles/variables.scss" as *;
+
+.draft {
+  width: 100%;
+
+  &__choice {
+    &__apperance {
+      position: relative;
+      display: inline-block;
+      border-radius: $br 0 0 $br;
+      aspect-ratio: 1 / 1;
+      border: 1px solid $clr-netural-300;
+      border-right: none;
+      cursor: pointer;
+      transition: $transition-hover;
+
+      &:hover {
+        background-color: $clr-accent-100;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -65%) rotate(45deg);
+      }
+    }
+
+    &:focus-visible + &__apperance {
+      outline: auto;
+    }
+
+    &:checked + &__apperance {
+      &::before {
+        display: inline-block;
+        height: 50%;
+        width: 30%;
+        border-bottom: 6px solid $clr-accent-400;
+        border-right: 6px solid $clr-accent-400;
+      }
+    }
+  }
+
+  &__text {
+    border-radius: 0 $br $br 0;
+    border: 1px solid $clr-netural-300;
+    padding: 10px 12px;
+  }
+
+  &__field {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+
+    &__container {
+      display: grid;
+      grid-template-columns: 1fr max-content;
+      gap: 0.5rem;
+    }
+  }
+
+  &_invalid  &__text,
+  &_invalid &__choice__apperance {
+    border-color: $warning;
+  }
+}
