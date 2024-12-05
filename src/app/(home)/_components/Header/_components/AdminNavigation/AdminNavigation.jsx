@@ -1,12 +1,9 @@
-import AdminNavigationContainer from "./AdminNavigationContainer";
 import Link from "next/link";
 
-const AdminNavigation = () => (
-  <AdminNavigationContainer>
-    <Link href="/test/constructor" className="interactivetext">
-      Create test
-    </Link>
-  </AdminNavigationContainer>
+const AdminNavigation = ({ onClick }) => (
+  <Link href="/test/create" className="interactivetext" onClick={onClick}>
+    Create test
+  </Link>
 );
 
 export default AdminNavigation;

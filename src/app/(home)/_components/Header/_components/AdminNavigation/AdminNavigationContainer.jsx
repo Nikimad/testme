@@ -1,11 +1,25 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/models/hooks";
-import { authorizationSelectors } from "@/models/authorization/selectors";
+import { useCallback } from "react";
+import { authorizationSelectors } from "@/models/authorization/selectors";;
+import AdminNavigation from "./AdminNavigation";
 
-const AdminNavigationContainer = ({ children }) => {
+const AdminNavigationContainer = () => {
+  const router = useRouter();
+
   const isUserAdmin = useAppSelector(authorizationSelectors.selecIsUserAdmin);
-  return isUserAdmin && children;
+
+  const handleClick = useCallback(
+    (e) => {
+      e.preventDefault();
+      router.push("/test/create")
+    },
+    [router]
+  );
+
+  return isUserAdmin && <AdminNavigation onClick={handleClick} />;
 };
 
 export default AdminNavigationContainer;
