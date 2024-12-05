@@ -1,31 +1,28 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { authorization as authorizationAPI, authorizationEndpoints } from "@/lib/api";
+import getSagaWrapper from "@/lib/getSagaWrapper";
+import getOptimisticSaga from "@/lib/getOptimisticSaga";
+import { api, authorizationEndpoints } from "@/lib/api";
 import { authorizationActions } from ".";
 
-const getActionSaga = (endpoint) =>
-  function* ({ payload }) {
-    try {
-      yield put(authorizationActions.start());
-      const user = yield call(authorizationAPI[endpoint], payload);
-      yield put(authorizationActions.success(!user.success ? user : null));
-    } catch (error) {
-      yield put(authorizationActions.reject(error));
-    } finally {
-      yield put(authorizationActions.finish());
-    }
-  };
+const sagaWrapper = getSagaWrapper(authorizationActions);
+
+const getSignSaga = (endpoint) =>
+  sagaWrapper(function* signSaga({ payload }) {
+    const [error, user] = yield call(api[endpoint], payload);
+    yield user && put(authorizationActions.setUser(user));
+    return error;
+  });
+
+const logout = sagaWrapper(getOptimisticSaga(api.logout));
 
 export default function* authorizationSaga() {
   yield takeEvery(
     authorizationActions.signin,
-    getActionSaga(authorizationEndpoints.signin)
+    getSignSaga(authorizationEndpoints.signin)
   );
   yield takeEvery(
     authorizationActions.signup,
-    getActionSaga(authorizationEndpoints.signup)
+    getSignSaga(authorizationEndpoints.signup)
   );
-  yield takeEvery(
-    authorizationActions.logout,
-    getActionSaga(authorizationEndpoints.logout)
-  );
+  yield takeEvery(authorizationActions.logout, logout);
 }

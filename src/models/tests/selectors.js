@@ -1,28 +1,30 @@
 import { createSelector } from "@reduxjs/toolkit";
+import { selectIsLoading, selectError } from "../selectors";
+import { testsAdapter } from ".";
 
-const rootSelector = createSelector(
+const testsRootSelector = createSelector(
   (state) => state,
-  ({ tests }) => tests,
+  ({ tests }) => tests
 );
+const adapterSelectors = testsAdapter.getSelectors(testsRootSelector);
 
-const selectQuery = createSelector(rootSelector, ({ query }) => query);
-const selectTests = createSelector(rootSelector, ({ tests }) => tests);
-const selectById = (testId) => createSelector(selectTests, (tests) => tests.find(({ id }) => testId == id));
-const selectTestsTotal = createSelector(selectTests, (tests) => tests.length);
-const selectIsLoading = createSelector(rootSelector, ({ isLoading }) => isLoading);
-const selectError = createSelector(rootSelector, ({ error }) => error);
-const selectMeta = createSelector(rootSelector, ({ meta }) => meta );
-const selectTotalPages = createSelector(selectMeta, ({ total_pages }) => total_pages);
-const selectTotalCount = createSelector(selectMeta, ({ total_count }) => total_count);
+const selectQuery = createSelector(testsRootSelector, ({ query }) => query);
+const selectMeta = createSelector(testsRootSelector, ({ meta }) => meta);
+const selectTotalPages = createSelector(
+  selectMeta,
+  ({ total_pages }) => total_pages
+);
+const selectTotalCount = createSelector(
+  selectMeta,
+  ({ total_count }) => total_count
+);
 
 export const testsSelectors = {
   selectQuery,
-  selectTests,
-  selectById,
-  selectTestsTotal,
   selectMeta,
-  selectError,
-  selectIsLoading,
   selectTotalPages,
   selectTotalCount,
+  selectError: selectError(testsRootSelector),
+  selectIsLoading: selectIsLoading(testsRootSelector),
+  ...adapterSelectors,
 };

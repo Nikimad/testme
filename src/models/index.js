@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import constructor from "./constructor";
 import authorization from "./authorization";
 import tests from "./tests";
+import questions from "./questions";
+import answers from "./answers";
 import rootSaga from "./sagas";
 
 export const makeStore = (preloadedState) => {
@@ -10,7 +11,8 @@ export const makeStore = (preloadedState) => {
   const store = configureStore({
     preloadedState,
     reducer: {
-      constructor,
+      questions,
+      answers,
       authorization,
       tests,
     },

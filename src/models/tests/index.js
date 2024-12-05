@@ -1,10 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "@/lib/initialState";
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { defaultState } from "@/lib/defaultState";
 import { start, finish, reject } from "../reducers";
+
+export const testsAdapter = createEntityAdapter();
 
 const testsSlice = createSlice({
   name: "tests",
-  initialState: initialState.tests,
+  initialState: { ...defaultState.tests },
   reducers: {
     start,
     finish,
@@ -12,21 +14,24 @@ const testsSlice = createSlice({
     setQuery: (state, { payload }) => {
       state.query = payload;
     },
-    getTests: (state) => state,
-    getTest: (state) => state,
-    success: (state, { payload: { action, ...data } }) => {
-      if (action === "getTests") {
-        state.meta = data.meta;
-        state.tests =
-          data.tests.length > 0 || data.isReset ? data.tests : state.tests;
-      }
-      if (
-        action === "getTest" &&
-        !state.tests.find(({ id }) => id === data.id)
-      ) {
-        state.tests = [...state.tests, data];
-      }
+    getTests: (state) => {
       state.error = null;
+      return state
+    },
+    getTest: (state) => state,
+    setTests: (state, { payload }) => {
+      state.meta = payload.meta;
+      testsAdapter.setAll(state, payload.tests);
+    },
+    createTest: (state) => state,
+    editTest: testsAdapter.updateOne,
+    addTest: (state, { payload }) => {
+      state.query = null;
+      testsAdapter.addOne(state, payload);
+    },
+    deleteTest: (state, action) => {
+      state.query = null;
+      testsAdapter.removeOne(state, action);
     },
   },
 });

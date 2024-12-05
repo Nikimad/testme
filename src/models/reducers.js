@@ -4,6 +4,6 @@ export const start = (state) => {
 export const finish = (state) => {
   state.isLoading = false;
 };
-export const reject = (state, { payload: { error } }) => {
-  state.error = error;
+export const reject = (state, { payload }) => {
+  state.error = payload?.error ?? payload;
 };

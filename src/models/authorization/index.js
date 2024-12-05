@@ -1,18 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "@/lib/initialState";
+import { defaultState } from "@/lib/defaultState";
 import { start, finish, reject } from "../reducers";
 
 const authorizationSlice = createSlice({
   name: "authorization",
-  initialState: initialState.authorization,
+  initialState: { ...defaultState.authorization },
   reducers: {
     start,
     finish,
     reject,
     signin: (state) => state,
     signup: (state) => state,
-    logout: (state) => state,
-    success: (state, { payload }) => {
+    logout: (state) => {
+      state.user = null;
+    },
+    setUser: (state, { payload }) => {
       state.user = payload;
       state.error = null;
     },
