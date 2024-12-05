@@ -1,0 +1,19 @@
+@use "@/styles/variables.scss" as *;
+
+.answer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    transition: $transition-hover;
+    padding: 1.75rem 1.75rem 1.75rem calc(1.75rem + 10px);
+
+    &__controls {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    &_target {
+        background-color: $clr-accent-200;
+    }
+}
