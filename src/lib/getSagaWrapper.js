@@ -6,6 +6,7 @@ const getSagaWrapper = (actions) => (mainSaga) =>
     const error = yield mainSaga(...args);
     yield error && put(actions.reject(error));
     yield put(actions.finish());
+    return error;
   };
 
 export default getSagaWrapper;
