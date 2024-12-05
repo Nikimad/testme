@@ -9,7 +9,7 @@ const Answers = ({ name, type, answers, validate }) => (
         <BoxField
           name={name}
           id={`answer_${answer.id}`}
-          type={type === "single" ? "radio" : "checkbox"}
+          type={type}
           value={answer.text}
           validate={validate}
         />
