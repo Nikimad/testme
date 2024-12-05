@@ -1,4 +1,3 @@
-import cn from "classnames";
 import s from "./Pagination.module.scss";
 
 const Pagination = ({
@@ -32,7 +31,7 @@ const Pagination = ({
         onBlur={onBlur}
         value={currentPage}
         type="number"
-        className={cn("input", s.pagination__input)}
+        className={s.pagination__input}
       />
       <button
         className={s.pagination__button}

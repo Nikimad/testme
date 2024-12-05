@@ -12,6 +12,7 @@ const PaginationContainer = () => {
   const { value, valueComparer, onChange, onBlur } = useSearchState("page", 1);
 
   const totalPages = useAppSelector(testsSelectors.selectTotalPages) || 1;
+  const totalCount = useAppSelector(testsSelectors.selectTotal);
 
   const handleGoToFirst = useCallback(
     () => onChange(1),
@@ -29,8 +30,8 @@ const PaginationContainer = () => {
 
   useEffect(() => {
     const currentPage = searchParams.get("page");
-    if (currentPage > totalPages) onChange(totalPages, "replace");
-  }, [searchParams, totalPages, onChange]);
+    if (currentPage > totalPages && totalCount === 0) onChange(totalPages, "replace");
+  }, [searchParams, totalPages, totalCount,onChange]);
 
   return (
     <Pagination
