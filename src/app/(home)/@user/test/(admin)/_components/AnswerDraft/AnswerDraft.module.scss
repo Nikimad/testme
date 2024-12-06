@@ -1,5 +1,9 @@
-.draft {
-    &__button {
-        width: 100%;
+@use "@/styles/variables.scss" as *;
+
+@media screen and (max-width:$break-point-mobile) {
+    .draft {
+        &__button {
+            width: 100%;
+        }
     }
 }
