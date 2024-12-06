@@ -16,11 +16,11 @@ const QuestionRedactorProvider = ({
   <Formik
     initialStatus={{ questionId }}
     initialValues={
-      initialValues || {
-        title: "",
-        question_type: "single",
-        answer: "",
-        answers: [],
+      {
+        title: initialValues?.title || "",
+        question_type: initialValues?.question_type || "single",
+        answer: initialValues?.answer || "",
+        answers: initialValues?.answers || [],
       }
     }
     initialTouched={{

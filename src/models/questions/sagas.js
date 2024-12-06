@@ -50,7 +50,7 @@ const editQuestion = sagaWrapper(
   getOptimisticSaga(api.editQuestion, handlePayload)
 );
 const deleteQuestion = sagaWrapper(
-  getOptimisticSaga(api.deleteQuestion, handlePayload)
+  getOptimisticSaga(api.deleteQuestion)
 );
 
 export default function* questionsSaga() {

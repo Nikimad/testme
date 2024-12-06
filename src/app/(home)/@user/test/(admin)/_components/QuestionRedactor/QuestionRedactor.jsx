@@ -2,10 +2,8 @@ import Input from "@/components/Input";
 import Error from "@/components/Error";
 import AnswerDraft from "../AnswerDraft";
 import AnswersList from "../AnswersList";
-import { Form } from "formik";
-
-import Select from "@/components/Select";
 import QuestionTypeSelect from "../QuestionTypeSelect";
+import { Form } from "formik";
 
 const QuestionRedactor = ({ onSubmit, idPrefix, type, children }) => (
   <Form className="form-grid" onSubmit={onSubmit}>

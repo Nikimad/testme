@@ -35,7 +35,7 @@ const QuestionEditorContainer = ({ questionId, position, onEditFinish }) => {
       if (
         storedQuestion.title !== editedQuestion.title ||
         storedQuestion.question_type !== editedQuestion.question_type ||
-        storedQuestion.answer !== editedQuestion.answer
+        (storedQuestion.answer !== editedQuestion.answer && editedQuestion.answer)
       )
         editQuestion({ id: questionId, ...editedQuestion });
       editStoredQuestion(editedQuestion);

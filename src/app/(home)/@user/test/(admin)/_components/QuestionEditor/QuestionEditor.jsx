@@ -1,4 +1,3 @@
-import ControlButton from "../ControlButton";
 import QuestionRedactorProvider from "../QuestionRedactorProvider";
 
 const QuestionEditor = ({
@@ -16,12 +15,12 @@ const QuestionEditor = ({
     onReset={onReset}
   >
     <div className="justify_sb">
-      <ControlButton type="submit" className="pill">
+      <button type="submit" className="pill">
         Done
-      </ControlButton>
-      <ControlButton type="reset" className="interactivetext">
+      </button>
+      <button type="reset" className="interactivetext">
         Delete
-      </ControlButton>
+      </button>
     </div>
   </QuestionRedactorProvider>
 );
