@@ -4,6 +4,7 @@ import ControlButton from "../ControlButton";
 import s from "./Answer.module.scss";
 
 const Answer = ({
+  isRight,
   isSelected,
   isActive,
   isTarget,
@@ -20,7 +21,10 @@ const Answer = ({
   onReset,
 }) => (
   <li
-    className={cn(s.answer, { [s.answer_target]: !isActive && !isEdit && isTarget })}
+    className={cn(s.answer, {
+      [s.answer_target]: !isActive && !isEdit && isTarget,
+      [s.answer_right]: isRight,
+    })}
     draggable={!isEdit}
     onDragStart={!isEdit ? onDragStart : () => {}}
     onDragEnter={!isEdit ? onDragEnter : () => {}}
@@ -28,7 +32,7 @@ const Answer = ({
   >
     {!isEdit ? (
       <>
-        {initialValues.text}
+        <span>{initialValues.text}</span>
         <div className={s.answer__controls}>
           <ControlButton
             type="button"

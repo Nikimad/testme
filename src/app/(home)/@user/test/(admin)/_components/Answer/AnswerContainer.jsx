@@ -121,6 +121,7 @@ const AnswerContainer = ({ position, name, answer, answers }) => {
 
   return (
     <Answer
+      isRight={answer.is_right}
       isSelected={dragIndex !== null}
       isActive={dragIndex === position}
       isTarget={dropIndex === position}

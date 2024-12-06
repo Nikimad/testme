@@ -1,9 +1,8 @@
 @use "@/styles/variables.scss" as *;
 
 .answer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    gap: 1.5rem;
     background-color: #fff;
     transition: $transition-hover;
     padding: 1.75rem 1.75rem 1.75rem calc(1.75rem + 10px);
@@ -11,9 +10,23 @@
     &__controls {
         display: flex;
         gap: 0.5rem;
+        margin-left: auto;
     }
 
     &_target {
         background-color: $clr-accent-200;
+    }
+
+    &_right {
+        box-shadow: 0 0 20px 0 $clr-accent-400 inset;
+    }
+}
+
+@media screen and (min-width: $break-point-mobile) {
+    .answer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
     }
 }
