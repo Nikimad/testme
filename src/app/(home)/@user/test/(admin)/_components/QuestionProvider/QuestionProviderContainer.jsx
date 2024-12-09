@@ -6,7 +6,13 @@ import { useAction } from "@/models/hooks";
 import { questionsActions } from "@/models/questions";
 import QuestionProvider from "./QuestionProvider";
 
-const QuestionProviderContainer = ({ test, questionId, position, onEditFinish, children }) => {
+const QuestionProviderContainer = ({
+  test,
+  questionId,
+  position,
+  onEditFinish,
+  children,
+}) => {
   const {
     values: { title, questions },
     submitForm: submitTestForm,
@@ -44,7 +50,7 @@ const QuestionProviderContainer = ({ test, questionId, position, onEditFinish, c
 
       submitTestForm();
     },
-    [test, title, questions, createQuestion, submitTestForm, setTestFieldValue]
+    [test, questions, createQuestion, submitTestForm, setTestFieldValue]
   );
 
   const handleEditQuestion = useCallback(
@@ -59,7 +65,7 @@ const QuestionProviderContainer = ({ test, questionId, position, onEditFinish, c
       setTestFieldValue(`questions[${position}]`, editedQuestion);
       onEditFinish();
     },
-    [questionId, storedQuestion, editQuestion, setTestFieldValue, onEditFinish]
+    [questionId, position, storedQuestion, editQuestion, setTestFieldValue, onEditFinish]
   );
 
   const handleDeleteQuestion = useCallback(() => {
@@ -86,8 +92,9 @@ const QuestionProviderContainer = ({ test, questionId, position, onEditFinish, c
       initialValues={storedQuestion}
       onSubmit={handleSubmit}
       onReset={handleReset}
-      children={children}
-    />
+    >
+      {children}
+    </QuestionProvider>
   );
 };
 
