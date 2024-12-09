@@ -60,7 +60,7 @@ const SelectContainer = ({
       handlePreselect(limitedPosition);
       setValue(options[limitedPosition].value);
     },
-    [options, setValue]
+    [options, handlePreselect, setValue]
   );
 
   const dissmiss = useCallback(
@@ -125,7 +125,7 @@ const SelectContainer = ({
 
       handleSelect(nextSelect);
     },
-    [preselect, handleSelect]
+    [options, preselect, handleSelect]
   );
 
   const handleKeyDown = useCallback(
@@ -193,7 +193,7 @@ const SelectContainer = ({
           break;
       }
     },
-    [isExpanded, preselect, openListbox, dissmiss, search, setInput, clearInput]
+    [options, isExpanded, preselect, openListbox, toggleListbox, closeListbox, handleSelect, dissmiss, search, setInput, clearInput]
   );
 
   return (

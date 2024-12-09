@@ -27,7 +27,6 @@ const Combobox = ({
     onKeyDown={onKeyDown}
     aria-expanded={isExpanded}
     aria-controls={`${id}-listbox`}
-    aria-haspopup={`${id}-listbox`}
     aria-labelledby={`${id}-label`}
     aria-activedescendant={`${id}-${value}`}
     ref={comboboxRef}
