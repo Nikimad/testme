@@ -1,3 +1,5 @@
+@use "@/styles/variables.scss" as *;
+
 .answers {
     display: grid;
     gap: 0.5rem;
@@ -9,5 +11,45 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+
+        &__choice {
+            border: 1px solid $clr-netural-200;
+            &::before {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+        }
+
+        &__input[type="radio"]+&__choice {
+            border-radius: 50%;
+        }
+
+        &__input[type="checkbox"]+&__choice {
+            border-radius: 2px;
+        }
+
+        &__input:checked+&__choice {
+            background-color: $clr-accent-400;
+        }
+
+        &__input[type="checkbox"]+&__choice::before {
+            display: inline-block;
+            height: 50%;
+            width: 30%;
+            border-bottom: 2px solid #fff;
+            border-right: 2px solid #fff;
+        }
+
+        &__input[type="radio"]+&__choice::before {
+            border-radius: 50%;
+            height: 80%;
+            width: 80%;
+            border: 1px solid #fff;
+        }
+
+        &__input:focus-visible+&__choice {
+            outline: auto;
+        }
     }
 }
