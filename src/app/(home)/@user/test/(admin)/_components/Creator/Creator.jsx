@@ -29,7 +29,7 @@ const Creator = () => {
     if (initialTestId !== testId && test.id !== testId) {
       setTest(tests[tests.length - 1]);
     }
-  }, [tests, test, testId]);
+  }, [initialTestId, tests, test, testId]);
 
   return (
     <Test
