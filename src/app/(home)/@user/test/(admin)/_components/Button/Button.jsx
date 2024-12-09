@@ -12,7 +12,7 @@ const Button = ({ type, className, onClick, children }) => {
         : type === "reset"
         ? resetForm()
         : onClick(),
-    [submitForm, resetForm, onClick]
+    [type, submitForm, resetForm, onClick]
   );
   return (
     <button type="button" className={className} onClick={handleClick}>
