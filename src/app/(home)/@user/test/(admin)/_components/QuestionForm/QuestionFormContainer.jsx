@@ -28,7 +28,14 @@ const QuestionFormContainer = ({
       }
       handleFomikSubmit(e);
     },
-    [questionId, isTestDirty, isQuestionDirty, handleFomikSubmit]
+    [
+      questionId,
+      isTestDirty,
+      isQuestionDirty,
+      setErrors,
+      validateForm,
+      handleFomikSubmit,
+    ]
   );
 
   return (
