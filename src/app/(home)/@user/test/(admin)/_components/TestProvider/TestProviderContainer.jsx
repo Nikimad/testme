@@ -39,7 +39,7 @@ const TestProviderContainer = ({
   const handleSubmit = useCallback(
     (newTest) =>
       test.id ? handleEditTest(newTest) : handleCreateTest(newTest),
-    [test, createTest, editTest]
+    [test, handleEditTest, handleCreateTest]
   );
 
   const handleReset = useCallback(() => {
