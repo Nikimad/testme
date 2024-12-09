@@ -1,6 +1,6 @@
-import ControlButton from "../ControlButton";
+import QuestionForm from "../QuestionForm";
+import QuestionProvider from "../QuestionProvider";
 import s from "./Question.module.scss";
-import QuestionEditor from "../QuestionEditor";
 
 const Question = ({
   questionId,
@@ -10,7 +10,7 @@ const Question = ({
   question,
   answers,
   onClick,
-  onFinish,
+  onEditFinish,
 }) => (
   <li className={s.question}>
     {!isEdit ? (
@@ -36,18 +36,29 @@ const Question = ({
           {isLoading ? (
             <p>Question is loading...</p>
           ) : (
-            <ControlButton type="button" className="pill" onClick={onClick}>
+            <button type="button" className="pill" onClick={onClick}>
               Edit
-            </ControlButton>
+            </button>
           )}
         </div>
       </>
     ) : (
-      <QuestionEditor
+      <QuestionProvider
         questionId={questionId}
         position={position}
-        onEditFinish={onFinish}
-      />
+        onEditFinish={onEditFinish}
+      >
+        <QuestionForm questionId={questionId} position={position}>
+          <div className="justify_sb">
+            <button type="submit" className="pill">
+              Done
+            </button>
+            <button type="reset" className="interactivetext">
+              Delete
+            </button>
+          </div>
+        </QuestionForm>
+      </QuestionProvider>
     )}
   </li>
 );

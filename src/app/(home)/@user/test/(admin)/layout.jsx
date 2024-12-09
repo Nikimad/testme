@@ -1,1 +1,1 @@
-export { default } from "./_components/AccessControl";
+export { default } from "./_components/ErrorControl";

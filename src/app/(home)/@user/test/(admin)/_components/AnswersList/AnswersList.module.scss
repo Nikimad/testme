@@ -1,15 +1,8 @@
 @use "@/styles/variables.scss" as *;
 
-.draft {
-    border: 1px solid $clr-netural-200;
-    background-color: $clr-netural-200;
-    border-radius: $br;
-    overflow: hidden;
-
-    &__list {
-        display: grid;
-        gap: 1px;
-    }
+.list {
+    display: grid;
+    gap: 1px;
 
     &__status {
         background-color: #fff;
@@ -17,7 +10,14 @@
         padding: 1.75rem;
     }
 
-    &_invalid {
-        border-color: $warning;
+    &__container {
+        border: 1px solid $clr-netural-200;
+        background-color: $clr-netural-200;
+        border-radius: $br;
+        overflow: hidden;
+
+        &_invalid {
+            border-color: $warning;
+        }
     }
 }

@@ -1,13 +1,11 @@
 "use client";
 
-import { useCallback, useState } from "react";
 import { useFormikContext, getIn } from "formik";
 import { useAppSelector } from "@/models/hooks";
 import { answersSelectors } from "@/models/answers/selectors";
 import AnswersList from "./AnswersList";
-import insert from "@/lib/insert";
 
-const AnswersListContainer = () => {
+const AnswersListContainer = ({ id }) => {
   const {
     values: question,
     status: { questionId },
@@ -18,6 +16,7 @@ const AnswersListContainer = () => {
 
   return (
     <AnswersList
+      id={id}
       answersStore={question.answers}
       answers={answers}
       isInvalid={Boolean(getIn(errors, "answers"))}

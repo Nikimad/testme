@@ -1,28 +1,29 @@
 import cn from "classnames";
-import AnswerRedactor from "../AnswerRedactor";
-import ControlButton from "../ControlButton";
+import AnswerForm from "../AnswerForm";
+import Button from "../Button";
 import s from "./Answer.module.scss";
 
 const Answer = ({
+  id,
+  answerId,
+  position,
+  answer,
   isRight,
-  isSelected,
+  isEdit,
+  isSelect,
   isActive,
   isTarget,
-  isEdit,
-  idPrefix,
-  initialValues,
   onClick,
+  onEditFinish,
   onDragStart,
   onDragEnter,
   onDragEnd,
   onDropClick,
   onDelete,
-  onSubmit,
-  onReset,
 }) => (
   <li
     className={cn(s.answer, {
-      [s.answer_target]: !isActive && !isEdit && isTarget,
+      [s.answer_target]: !isSelect && !isEdit && isTarget,
       [s.answer_right]: isRight,
     })}
     draggable={!isEdit}
@@ -32,47 +33,47 @@ const Answer = ({
   >
     {!isEdit ? (
       <>
-        <span>{initialValues.text}</span>
+        <span>{answer.text}</span>
         <div className={s.answer__controls}>
-          <ControlButton
+          <button
             type="button"
             className="pill"
-            onClick={isSelected ? onDropClick : onDragStart}
+            onClick={isActive ? onDropClick : onDragStart}
           >
-            {!isSelected ? "Select" : isActive ? "Cancel" : "Insert"}
-          </ControlButton>
-          {!isSelected && (
+            {!isActive ? "Select" : isSelect ? "Cancel" : "Insert"}
+          </button>
+          {!isActive && (
             <>
-              <ControlButton type="button" className="pill" onClick={onClick}>
+              <button type="button" className="pill" onClick={onClick}>
                 Edit
-              </ControlButton>
-              <ControlButton
+              </button>
+              <button
                 type="button"
                 className="interactivetext"
                 onClick={onDelete}
               >
                 Delete
-              </ControlButton>
+              </button>
             </>
           )}
         </div>
       </>
     ) : (
-      <AnswerRedactor
-        idPrefix={idPrefix}
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        onReset={onReset}
+      <AnswerForm
+        id={id}
+        answerId={answerId}
+        position={position}
+        onEditFinish={onEditFinish}
       >
         <div className={s.answer__controls}>
-          <ControlButton type="submit" className="pill">
+          <Button type="submit" className="pill">
             Save
-          </ControlButton>
-          <ControlButton type="reset" className="interactivetext">
+          </Button>
+          <Button type="reset" className="interactivetext">
             Cancel
-          </ControlButton>
+          </Button>
         </div>
-      </AnswerRedactor>
+      </AnswerForm>
     )}
   </li>
 );

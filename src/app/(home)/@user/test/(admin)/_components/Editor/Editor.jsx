@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { notFound, useRouter } from "next/navigation";
 import { useAppSelector } from "@/models/hooks";
 import { testsSelectors } from "@/models/tests/selectors";
-import TestRedactorProvider from "../TestRedactorProvider";
+import Test from "../Test";
 
 const Editor = ({ params: { testId } }) => {
   const [isTestDelete, setIsTestDelete] = useState(false);
@@ -25,7 +25,7 @@ const Editor = ({ params: { testId } }) => {
   }, [isTestDelete, isLoading, back]);
 
   return isTestDelete && isLoading ? null : (
-    <TestRedactorProvider test={test} onDelete={handleDelete} />
+    <Test test={test} onDelete={handleDelete} />
   );
 };
 

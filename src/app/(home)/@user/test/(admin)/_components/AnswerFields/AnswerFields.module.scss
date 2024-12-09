@@ -1,0 +1,25 @@
+@use "@/styles/variables.scss" as *;
+
+.fields {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    flex-grow: 1;
+
+    &__wrapper {
+        flex-grow: 1;
+    }
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+}
+
+@media screen and (max-width:$break-point-mobile) {
+    .fields {
+        &__button {
+            width: 100%;
+        }
+    }
+}

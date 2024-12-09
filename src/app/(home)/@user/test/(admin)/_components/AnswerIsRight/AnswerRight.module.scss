@@ -1,0 +1,39 @@
+@use "@/styles/variables.scss" as *;
+
+.choice {
+    &__apperance {
+      border-radius: $br 0 0 $br;
+      aspect-ratio: 1 / 1;
+      height: 100%;
+      border: 1px solid $clr-netural-300;
+      border-right: none;
+      transition: $transition-hover;
+
+      &:hover {
+        background-color: $clr-accent-100;
+      }
+
+      &::before {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -65%) rotate(45deg);
+      }
+
+      &_invalid {
+        border-color: $warning;
+      }
+    }
+
+    &:focus-visible + &__apperance {
+      outline: auto;
+    }
+
+    &:checked + &__apperance {
+      &::before {
+        height: 50%;
+        width: 30%;
+        border-bottom: 6px solid $clr-accent-400;
+        border-right: 6px solid $clr-accent-400;
+      }
+    }
+  }

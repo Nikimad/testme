@@ -1,13 +1,9 @@
 "use client";
 
-import { useAppSelector } from "@/models/hooks";
 import { useField } from "formik";
-import { questionsSelectors } from "@/models/questions/selectors";
 import QuestionsList from "./QuestionsList";
 
-const QuestionsListContainer = ({ test }) => {
-  const questions = useAppSelector(questionsSelectors.selectAllByTestId(test.id));
-
+const QuestionsListContainer = ({ questions }) => {
   const [{ value: questionsStore }] = useField("questions");
 
   return (

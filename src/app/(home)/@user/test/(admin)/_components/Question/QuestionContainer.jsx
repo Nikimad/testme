@@ -9,6 +9,7 @@ const QuestionContainer = ({ questionId, position, question, isLoading }) => {
   const answers = useAppSelector(
     answersSelectors.selectAllByQuestionId(questionId)
   );
+
   const [isEdit, setIsEdit] = useState(false);
 
   const handleEdit = useCallback(() => isEdit || setIsEdit(true), [isEdit]);
@@ -23,7 +24,7 @@ const QuestionContainer = ({ questionId, position, question, isLoading }) => {
       question={question}
       answers={answers}
       onClick={handleEdit}
-      onFinish={handleFinish}
+      onEditFinish={handleFinish}
     />
   );
 };

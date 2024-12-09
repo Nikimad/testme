@@ -1,0 +1,11 @@
+@use "@/styles/variables.scss" as *;
+
+.input {
+    border-radius: 0 $br $br 0;
+    border: 1px solid $clr-netural-300;
+    padding: 10px 12px;
+
+    &_invalid {
+        border-color: $warning;
+    }
+}

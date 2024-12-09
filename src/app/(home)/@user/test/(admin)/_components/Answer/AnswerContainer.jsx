@@ -9,50 +9,30 @@ import { answersActions } from "@/models/answers";
 import { useContext } from "react";
 import DndContext from "@/context/DndContext";
 
-const AnswerContainer = ({ position, name, answer, answers }) => {
-  const answerId = answers[position]?.id;
-
+const AnswerContainer = ({ id, answerId, position }) => {
   const {
-    values: question,
+    values: { answers },
     status: { questionId },
     setFieldValue,
     setFieldError,
   } = useFormikContext();
+
+  const answer = answers[position];
 
   const { dragIndex, dropIndex, onDragStart, onDragEnter, onDragEnd } =
     useContext(DndContext);
 
   const [isEdit, setIsEdit] = useState(false);
 
-  const editAnswer = useAction(answersActions.editAnswer);
   const insertAnswer = useAction(answersActions.insertAnswer);
   const deleteAnswer = useAction(answersActions.deleteAnswer);
 
-  const handleStart = useCallback(() => isEdit || setIsEdit(true), [isEdit]);
+  const handleEdit = useCallback(() => isEdit || setIsEdit(true), [isEdit]);
   const handleFinish = useCallback(() => isEdit && setIsEdit(false), [isEdit]);
-
-  const handleEditAnswer = useCallback(
-    (editedAnswer) => {
-      if (
-        answer.text !== editedAnswer.text ||
-        answer.is_right !== editedAnswer.is_right
-      ) {
-        answerId &&
-          editAnswer({
-            answerId,
-            position,
-            answer: editedAnswer,
-          });
-        setFieldValue(`answers[${position}]`, editedAnswer);
-      }
-      handleFinish();
-    },
-    [answerId, position, answer, setFieldValue, editAnswer, handleFinish]
-  );
 
   const handleDeleteAnswer = useCallback(() => {
     if (questionId && answer.is_right) {
-      const rightAnswersCount = question.answers.filter(
+      const rightAnswersCount = answers.filter(
         ({ is_right }) => is_right
       ).length;
       if (rightAnswersCount <= 1)
@@ -63,10 +43,10 @@ const AnswerContainer = ({ position, name, answer, answers }) => {
     }
     setFieldValue(
       "answers",
-      question.answers.filter((_, i) => position !== i)
+      answers.filter((_, i) => position !== i)
     );
     answerId && deleteAnswer({ questionId, answerId });
-  }, [question, questionId, answerId, answer, deleteAnswer, setFieldValue]);
+  }, [answers, questionId, answerId, answer, deleteAnswer, setFieldValue]);
 
   const handleDragStart = useCallback(
     () => onDragStart(position),
@@ -94,7 +74,7 @@ const AnswerContainer = ({ position, name, answer, answers }) => {
         setFieldValue(
           "answers",
           insert(
-            question.answers,
+            answers,
             dragIndex,
             dropIndex !== null ? dropIndex : position
           )
@@ -105,7 +85,7 @@ const AnswerContainer = ({ position, name, answer, answers }) => {
     [
       dragIndex,
       dropIndex,
-      question,
+      answers,
       questionId,
       answerId,
       onDragEnd,
@@ -121,21 +101,22 @@ const AnswerContainer = ({ position, name, answer, answers }) => {
 
   return (
     <Answer
+      id={id}
+      answerId={answerId}
+      position={position}
+      answer={answer}
       isRight={answer.is_right}
-      isSelected={dragIndex !== null}
-      isActive={dragIndex === position}
+      isActive={dragIndex !== null}
+      isSelect={dragIndex === position}
       isTarget={dropIndex === position}
       isEdit={isEdit}
-      idPrefix={name}
-      initialValues={answer}
-      onClick={handleStart}
+      onClick={handleEdit}
+      onEditFinish={handleFinish}
       onDragStart={handleDragStart}
       onDragEnter={handleDragEnter}
       onDragEnd={handleDragEnd}
       onDropClick={handleDropClick}
       onDelete={handleDeleteAnswer}
-      onSubmit={handleEditAnswer}
-      onReset={handleFinish}
     />
   );
 };

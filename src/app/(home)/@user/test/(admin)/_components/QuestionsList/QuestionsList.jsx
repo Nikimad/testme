@@ -10,7 +10,6 @@ const QuestionsList = ({ questionsStore, questions }) =>
           question={question}
           questionId={questions[i]?.id}
           position={i}
-          name={`questions[${i}]`}
         />
       ))}
     </ul>
