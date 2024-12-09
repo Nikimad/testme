@@ -145,6 +145,7 @@ const SelectContainer = ({
           closeListbox();
           break;
         case "Space":
+          e.preventDefault();
           openListbox();
           break;
         case "End":

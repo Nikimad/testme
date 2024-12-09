@@ -1,7 +1,8 @@
 .combobox {
   cursor: pointer;
 
-  &:focus-visible {
+  &:focus-visible,
+  &:focus {
     outline: auto;
   }
 
