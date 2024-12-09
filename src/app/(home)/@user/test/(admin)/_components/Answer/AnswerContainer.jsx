@@ -46,7 +46,16 @@ const AnswerContainer = ({ id, answerId, position }) => {
       answers.filter((_, i) => position !== i)
     );
     answerId && deleteAnswer({ questionId, answerId });
-  }, [answers, questionId, answerId, answer, deleteAnswer, setFieldValue]);
+  }, [
+    answers,
+    questionId,
+    answerId,
+    answer,
+    position,
+    deleteAnswer,
+    setFieldError,
+    setFieldValue,
+  ]);
 
   const handleDragStart = useCallback(
     () => onDragStart(position),
@@ -73,11 +82,7 @@ const AnswerContainer = ({ id, answerId, position }) => {
           });
         setFieldValue(
           "answers",
-          insert(
-            answers,
-            dragIndex,
-            dropIndex !== null ? dropIndex : position
-          )
+          insert(answers, dragIndex, dropIndex !== null ? dropIndex : position)
         );
       }
       onDragEnd();
