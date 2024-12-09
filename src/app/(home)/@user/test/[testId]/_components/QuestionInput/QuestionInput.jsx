@@ -2,13 +2,11 @@
 
 import Answer from "../Answer";
 import Answers from "../Answers";
+import QuestionSkip from "../QuestionSkip";
 
 const QuestionInput = ({ name, type, isQuestionSkip, answers, validate }) =>
   isQuestionSkip ? (
-    <p>
-      Sorry, the question has no answer yet, skipping this question will not
-      affect the final results
-    </p>
+    <QuestionSkip name={name} />
   ) : type === "number" ? (
     <Answer name={name} validate={validate} />
   ) : (
