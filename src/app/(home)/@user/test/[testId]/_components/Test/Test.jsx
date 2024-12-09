@@ -6,8 +6,8 @@ import { questionsSelectors } from "@/models/questions/selectors";
 import { Formik, Form } from "formik";
 import Question from "../Question";
 import Controls from "../Controls";
-import s from "./Test.module.scss";
 import ErrorPage from "@/components/ErrorPage";
+import s from "./Test.module.scss";
 
 const Test = ({ params: { testId } }) => {
   const test = useAppSelector((state) =>
@@ -31,7 +31,7 @@ const Test = ({ params: { testId } }) => {
 
   return testId != test?.id ? (
     <ErrorPage text="Test not found" />
-  ) : (
+  ) : questions.length > 0 ? (
     <Formik
       initialTouched={defaultState.initialTouched}
       initialValues={defaultState.initialValues}
@@ -47,6 +47,8 @@ const Test = ({ params: { testId } }) => {
         <Controls />
       </Form>
     </Formik>
+  ) : (
+    <h2 className={s.test_empty}>Sorry, the test: "{test.title}" has no questions yet</h2>
   );
 };
 
