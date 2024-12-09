@@ -48,7 +48,7 @@ const Test = ({ params: { testId } }) => {
       </Form>
     </Formik>
   ) : (
-    <h2 className={s.test_empty}>Sorry, the test: "{test.title}" has no questions yet</h2>
+    <h2 className={s.test_empty}>Sorry, the test: &quot;{test.title}&quot; has no questions yet</h2>
   );
 };
 
