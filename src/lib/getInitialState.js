@@ -6,7 +6,7 @@ import getUser from "./getUser";
 import getTests from "./getTests";
 
 const getInitialState = async () => {
-  const cookiesString = cookies().toString();
+  const cookiesString = (await cookies()).toString();
 
   const initialState = {
     authorization: { ...defaultState.authorization },
@@ -14,7 +14,7 @@ const getInitialState = async () => {
     questions: { ...defaultState.questions },
     answers: { ...defaultState.answers },
   };
-
+  
   const user = await getUser(cookiesString);
 
   if (user) {
