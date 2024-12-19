@@ -1,3 +1,3 @@
-const SigninPage = () => null;
+const SignInPage = () => null;
 
-export default SigninPage;
+export default SignInPage;

@@ -1,3 +1,8 @@
+const SignUpPage = () => null;
+
+export default SignUpPage;
+
+/*
 import Field from "@/components/Field";
 
 const SignupPage = () => (
@@ -5,3 +10,4 @@ const SignupPage = () => (
 );
 
 export default SignupPage;
+*/
