@@ -1,4 +1,4 @@
-export const methods = {
+const methods = {
   get: "GET",
   post: "POST",
   patch: "PATCH",
@@ -23,7 +23,7 @@ const _fetch = async (
   headers = {},
   options = {}
 ) => {
-  console.log(`${method}: ${url}`);
+  console.log(`${method}: ${apiURL}/${url}`);
   const response = await fetch(`${apiURL}/${url}`, {
     method,
     credentials: "include",
@@ -35,9 +35,11 @@ const _fetch = async (
     },
   });
 
-  let error = null;
-  let data = null; 
 
+  let error = null;
+  let data = null;
+  let cookies = response.headers.getSetCookie();
+  
   try {
     const parsedRes = await response.json();
     if (response.ok) data = parsedRes;
@@ -46,10 +48,10 @@ const _fetch = async (
     error = { error: "Something went wrong" };
   }
 
-  return [error, data];
+  return [error, data, cookies];
 };
 
-export const _get = (...args) => _fetch(methods.get, ...args);
-export const _post = (...args) => _fetch(methods.post, ...args);
-export const _patch = (...args) => _fetch(methods.patch, ...args);
-export const _delete = (...args) => _fetch(methods.delete, ...args);
+export const _get = async (...args) => _fetch(methods.get, ...args);
+export const _post = async (...args) => _fetch(methods.post, ...args);
+export const _patch = async (...args) => _fetch(methods.patch, ...args);
+export const _delete = async (...args) => _fetch(methods.delete, ...args);
