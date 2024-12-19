@@ -1,0 +1,27 @@
+@use "@/styles/variables.scss" as *;
+
+.field {
+    position: relative;
+    line-height: $lh-sec;
+    padding-bottom: 1.5rem;
+    margin-bottom: 0.25rem;
+
+    &__input {
+        display: block;
+        width: 100%;
+        font: inherit;
+        line-height: inherit;
+        border: 1px solid $clr-netural-300;
+        border-radius: $br;
+        padding: 10px 12px;
+
+
+        &_invalid {
+            border-color: $warning;
+        }
+    }
+
+    &__error {
+        position: absolute;
+    }
+}
