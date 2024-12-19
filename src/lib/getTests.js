@@ -2,10 +2,9 @@ import { cache } from "react";
 import { headers } from "next/headers";
 import { api } from "./api";
 import normolizeData from "./normolizeData";
-import { notFound } from "next/navigation";
 
 const getTests = cache(async (cookiesString) => {
-  const url = new URL(headers().get("x-url"));
+  const url = new URL((await headers()).get("x-url"));
   const query = url.searchParams.toString();
 
   let testsStorage = [];
