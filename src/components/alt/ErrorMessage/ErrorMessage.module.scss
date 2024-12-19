@@ -1,0 +1,9 @@
+@use "@/styles/variables.scss" as *;
+
+.errormessage {
+    color: $warning;
+
+    &::first-letter {
+        text-transform: uppercase;
+    }
+}
