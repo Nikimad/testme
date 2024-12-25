@@ -1,36 +1,36 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useCallback } from "react";
 import { usePathname } from "next/navigation";
-import { useAction } from "@/models/hooks";
+import { useAction, useAppSelector } from "@/models/hooks";
 import { authorizationActions } from "@/models/authorization";
-import { initialState } from "../../_lib/initialState";
-import sign from "../../_lib/sign";
+import { authorizationSelectors } from "@/models/authorization/selectors";
+import handleFormSubmit from "@/lib/handleFormSubmit";
 import Form from "./Form";
 
 const FormContainer = () => {
   const isSignUp = usePathname() === "/signup";
-  const [state, action, isLoading] = useActionState(sign, {
-    ...initialState,
-    context: { isSignUp },
-  });
 
-  const setUser = useAction(authorizationActions.setUser);
+  const isLoading = useAppSelector(authorizationSelectors.selectIsLoading);
+  const errors = useAppSelector(authorizationSelectors.selectError);
 
-  useEffect(() => {
-    state.user && setUser(state.user);
-  }, [state.user, setUser])
+  const signin = useAction(authorizationActions.signin);
+  const signup = useAction(authorizationActions.signup);
+
+  const handleSubmit = useCallback((e) => {
+    const { values } = handleFormSubmit(e);
+    const action = isSignUp ? signup : signin;
+    action(values);
+  }, [isSignUp, handleFormSubmit, signup, signin])
 
 
   return (
     <Form
       title={isSignUp ? "up" : "in"}
-      action={action}
+      onSubmit={handleSubmit}
       isSignUp={isSignUp}
       isLoading={isLoading}
-      isSuccess={state.success}
-      values={state.data}
-      errors={state.errors}
+      errors={errors}
     />
   );
 };

@@ -4,20 +4,11 @@ import ErrorMessage from "@/components/alt/ErrorMessage";
 import Spinner from "@/components/Spinner";
 import s from "./Form.module.scss";
 
-const Form = ({
-  title,
-  action,
-  isSignUp,
-  isLoading,
-  isSuccess,
-  values,
-  errors,
-}) => (
+const Form = ({ title, onSubmit, isSignUp, isLoading, errors }) => (
   <form
-    action={action}
+    onSubmit={onSubmit}
     aria-describedby={`sing-${title}-form-error`}
     className={cn(s.form, {
-      [s.form_success]: isSuccess,
       [s.form_invalid]: errors?.error,
     })}
   >
@@ -30,7 +21,6 @@ const Form = ({
         label="Username"
         id="username"
         name="username"
-        defaultValue={values.username}
         error={errors?.username}
         isLoading={isLoading}
       />
@@ -39,7 +29,6 @@ const Form = ({
         id="password"
         name="password"
         type="password"
-        defaultValue={values.password}
         error={errors?.password}
         isLoading={isLoading}
       />
@@ -49,7 +38,6 @@ const Form = ({
           id="password_confirmation"
           name="password_confirmation"
           type="password"
-          defaultValue={values.password_confirmation}
           error={errors?.password_confirmation}
           isLoading={isLoading}
         />
